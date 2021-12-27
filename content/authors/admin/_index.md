@@ -19,9 +19,9 @@ interests:
 - Computational Linguistics
 - Information Retrieval
 organizations:
-- name: Stanford University
+- name: KTU
   url: https://www.stanford.edu/
-role: Professor of Artificial Intelligence
+role: Professor of Surgery
 social:
 - icon: envelope
   icon_pack: fas
@@ -42,7 +42,7 @@ social:
   icon_pack: fab
   link: https://www.linkedin.com/
 superuser: true
-title: Alice Bighetti (吳恩達)
+title: Ali GUNER
 ---
 
 Alice Bighetti is a professor of artificial intelligence at the Stanford AI Lab. Her research interests include distributed robotics, mobile computing and programmable matter. She leads the Robotic Neurobiology group, which develops self-reconfiguring robots, systems of self-organizing robots, and mobile sensor networks.
