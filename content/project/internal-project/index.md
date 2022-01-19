@@ -5,10 +5,10 @@ image:
   caption: Photo by rawpixel on Unsplash
   focal_point: Smart
 links:
-- icon: twitter
+- icon: github
   icon_pack: fab
-  name: Follow
-  url: https://twitter.com/georgecushen
+  name: Codes
+  url: https://github.com/AliGunerMD/DataVizMed/tree/main/content/blog/coffee-ipsum
 slides: example
 summary: An example of using the in-built project page.
 tags:
