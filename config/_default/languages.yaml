@@ -9,14 +9,14 @@ en:
   #contentDir: content/en
 
 # Uncomment the lines below to configure your website in a second language.
-#zh:
-#  languageCode: zh-Hans
-#  contentDir: content/zh
-#  title: Chinese website title...
+#tr:
+#  languageCode: tr-tr
+#  contentDir: content/tr
+#  title: Kişisel websitesi...
 #  params:
-#    description: Site description in Chinese...
+#    description: Kişisel websitesi Türkçe versiyonu
 #  menu:
 #    main:
-#      - name: 传
+#      - name: Ali Guner
 #        url: '#about'
 #        weight: 1

@@ -1,52 +1,81 @@
 ---
-bio: My research interests include distributed robotics, mobile computing and programmable
-  matter.
+bio: An academic who engaged in the improvement of scientific methodology/products, and more importantly in the development of the people those who produce science.
 education:
   courses:
-  - course: PhD in Artificial Intelligence
-    institution: Stanford University
+  - course: Medical Doctor
+    institution: Istanbul University, Istanbul Faculty of Medicine
+    year: 1996-2002
+  - course: Fellow of Upper GI Surgery Division
+    institution: Yonsei University, Robotic and Minimal Invasive Surgery Center
     year: 2012
-  - course: MEng in Artificial Intelligence
-    institution: Massachusetts Institute of Technology
-    year: 2009
-  - course: BSc in Artificial Intelligence
-    institution: Massachusetts Institute of Technology
-    year: 2008
-email: ""
+  - course: Fellow of Upper GI Surgery Division
+    institution: Yonsei University, Gastric Cancer Clinic
+    year: 2013-2014
+  - course: Visiting Surgeon of Upper GI Surgery Division
+    institution: Kyoto University, Upper GI Cancer Clinic
+    year: 2014
+  - course: Bachelor's degree in Philosophy
+    institution: Anadolu University
+    year: 2014-2017
+  - course: Fellow of American College of Surgeons
+    institution: American College of Surgeons
+    year: 2018
+  - course: PhD in Biostatistics and Medical Informatics
+    institution: KTU
+    year: 2017-2023
+email: draliguner@yahoo.com
 highlight_name: true
 interests:
-- Artificial Intelligence
-- Computational Linguistics
-- Information Retrieval
+- Esophageal and Gastric Cancer
+- Regression
+- Survival analysis
+- Data visualization in Medicine
+- AI
+- Academic productivity
+- Minimalism
+- Photography
+- Cycling
 organizations:
 - name: KTU
-  url: https://www.stanford.edu/
+  url: https://www.ktu.edu.tr/
 role: Professor of Surgery
 social:
-- icon: envelope
-  icon_pack: fas
-  link: /#contact
+# - icon: envelope
+#   icon_pack: fas
+#   link: /#contact
 - display:
     header: true
-  icon: twitter
+- icon: envelope
+  icon_pack: fas
+  link: mailto:draliguner@yahoo.com
+- icon: twitter
   icon_pack: fab
   label: Follow me on Twitter
-  link: https://twitter.com/GeorgeCushen
-- icon: graduation-cap
-  icon_pack: fas
-  link: https://scholar.google.co.uk/citations?user=sIwtMXoAAAAJ
+  link: https://twitter.com/AliGunerMD
 - icon: github
   icon_pack: fab
-  link: https://github.com/gcushen
-- icon: linkedin
-  icon_pack: fab
-  link: https://www.linkedin.com/
+  label: GitHub
+  link: https://github.com/AliGunerMD
+- icon: graduation-cap
+  icon_pack: fas
+  label: Avesis
+  link: https://avesis.ktu.edu.tr/aliguner
+- icon: publons
+  icon_pack: ai
+  label: Publons
+  link: https://publons.com/researcher/2323900/ali-guner/
+- icon: orcid
+  icon_pack: ai
+  link: https://orcid.org/0000-0001-7801-8081
 superuser: true
 title: Ali GUNER
 ---
+-UNDER CONSTRUCTION-
+A surgeon who has lost his mind with the treatment of gastric cancer..  
+An academic who enjoys to play with the computers..  
+A data scientist who believes that the future of science is in data..  
+A visionary waiting for the irony of artificial intelligence to turn into reality..  
+A photographer in pursuit of the abstract details of the universe..  
+Epicurean..  
 
-Alice Bighetti is a professor of artificial intelligence at the Stanford AI Lab. Her research interests include distributed robotics, mobile computing and programmable matter. She leads the Robotic Neurobiology group, which develops self-reconfiguring robots, systems of self-organizing robots, and mobile sensor networks.
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque elit, tristique placerat feugiat ac, facilisis vitae arcu. Proin eget egestas augue. Praesent ut sem nec arcu pellentesque aliquet. Duis dapibus diam vel metus tempus vulputate.
-
-{{< icon name="download" pack="fas" >}} Download my {{< staticref "uploads/resume.pdf" "newtab" >}}resumé{{< /staticref >}}.
+{{< icon name="download" pack="fas" >}} Download my {{< staticref "uploads/resume.pdf" "newtab" >}}academic CV{{< /staticref >}}.
