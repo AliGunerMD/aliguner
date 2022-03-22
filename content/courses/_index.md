@@ -2,9 +2,9 @@
 header:
   caption: ""
   image: ""
-title: Courses
+title: Library
 type: page
 view: 2
 ---
 
-I teach the following courses:
+Book-format documents including my old blog posts:

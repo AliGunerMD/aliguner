@@ -2,6 +2,7 @@
 # An instance of the Featurette widget.
 # Documentation: https://wowchemy.com/docs/page-builder/
 widget: featurette
+active: true
 
 # This file represents a page section.
 headless: true
@@ -16,18 +17,30 @@ subtitle:
 # - Add/remove as many `feature` blocks below as you like.
 # - For available icons, see: https://wowchemy.com/docs/page-builder/#icons
 feature:
-- description: 90%
+- description:  All treatment modalities
+  icon: hospital
+  icon_pack: fas
+  name: Upper GI Cancer
+- description:  Advanced user with tidyverse approach
   icon: r-project
   icon_pack: fab
   name: R
-- description: 100%
+- description: Experience in design of medical studies
   icon: chart-line
   icon_pack: fas
   name: Statistics
-- description: 10%
+- description: Over 25 years story
   icon: camera-retro
   icon_pack: fas
   name: Photography
+- description: try to improve skill
+  icon: chess
+  icon_pack: fas
+  name: Chess
+- description: Experienced in "how to record patient's data?"
+  icon: database
+  icon_pack: fas
+  name: Database
 
 # Uncomment to use emoji icons.
 #- icon: ':smile:'
