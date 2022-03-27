@@ -70,7 +70,8 @@ social:
 superuser: true
 title: Ali GUNER
 ---
--UNDER CONSTRUCTION-   
+MD, PhDc, BA, FACS 
+  
 A surgeon who has lost his mind with the treatment of gastric cancer..  
 An academic who enjoys to play with the computers..  
 A data scientist who believes that the future of science is in data..  

@@ -26,12 +26,12 @@ tags: [congress]
 location: Pine Beach Hotel
 projects:
 publishDate: "2022-03-22T00:00:00Z"
-summary: "Mide Kanseri Cerrahi Tedavi İlkeleri: Ne Değişti? (Principles of gastric cancer surgical treatment: What has changed?)"
+summary: "Mide Kanseri Cerrahi Tedavi İlkeleri: Ne Değişti?"
 
-title: Ulusal Cerrahi Kongresi (National Surgical Congress) 2022
+title: Ulusal Cerrahi Kongresi 2022
 url_code: ""
-url_pdf: ""
-url_slides: /slides/uck2022/sunum.html
+url_pdf: /pdfs/uck_2022/aliguner.pdf
+url_slides: /slides/uck2022/index.html
 url_video: ""
 ---
 
