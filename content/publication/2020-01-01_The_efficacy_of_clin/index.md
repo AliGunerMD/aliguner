@@ -7,7 +7,7 @@ publication_types: ["2"]
 publication: Turk J Surg
 publication_short: Turk J Surg. 36 (1); 39-47
 image:
-    caption: ""
+    caption: Table 1. Clinical pathway for gastric cancer surgery
     focal_point: ""
     preview_only: false
 links:
