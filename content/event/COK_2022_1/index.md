@@ -25,10 +25,10 @@ slides:
 tags: [congress]
 location: Gloria Golf Resort
 projects:
-publishDate: "2022-03-27T00:00:00Z"
+publishDate: "2022-02-27T00:00:00Z"
 summary: "D2 diseksiyon, step step cerrahi teknik"
 
-title: Ulusal Cerrahi Onkoloji Kongresi 2022
+title: "Ulusal Cerrahi Onkoloji Kongresi 2022 - 1"
 url_code: ""
 url_pdf: ""
 url_slides: /slides/COK2022_D2/index.html
