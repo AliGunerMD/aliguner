@@ -132,7 +132,7 @@ comments:
     publication: true
     event: true
   disqus:
-    shortname: ''
+    shortname: "aliguner-com"
     show_count: true
   commento:
     url: ''
