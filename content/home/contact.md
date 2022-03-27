@@ -10,7 +10,7 @@ headless: true
 weight: 130
 
 title: Contact
-subtitle:
+subtitle: Please use contact form or email link
 
 content:
   # Automatically link email and phone or display as text?
@@ -20,7 +20,7 @@ content:
   form:
     provider: formspree
     formspree:
-      id: test
+      id: xlezwjnn
     netlify:
       # Enable CAPTCHA challenge to reduce spam?
       captcha: false

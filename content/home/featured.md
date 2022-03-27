@@ -9,7 +9,7 @@ headless: true
 # Order that this section appears on the page.
 weight: 40
 
-title: Publications
+title: Articles
 subtitle: in Upper GI Surgery
 
 content:
