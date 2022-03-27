@@ -9,7 +9,7 @@ main:
     weight: 10
   - name: Blog
     url: '#posts'
-    weight: 20
+    weight: 65
   # - name: Projects
   #   url: '#projects'
   #   weight: 30
@@ -22,9 +22,9 @@ main:
   - name: Library
     url: courses/
     weight: 60
-  - name: CV
-    url: "uploads/resume.pdf"
-    weight: 70
+  # - name: CV
+  #   url: "uploads/resume.pdf"
+  #   weight: 70
   - name: Contact
     url: '#contact'
     weight: 80
