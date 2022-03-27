@@ -26,7 +26,7 @@ tags: []
 categories: 
    - UGI
 featured: true
-url_pdf: /static/publications/biomarkers.pdf
+url_pdf: /pdfs/publications/biomarkers.pdf
 url_code: ""
 url_dataset: ""
 url_project: ""

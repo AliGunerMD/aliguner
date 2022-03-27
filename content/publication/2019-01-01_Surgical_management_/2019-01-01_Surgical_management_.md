@@ -26,7 +26,7 @@ tags: []
 categories: 
    - UGI
 featured: true
-url_pdf: /static/publications/mgc.pdf
+url_pdf: /pdfs/publications/mgc.pdf
 url_code: ""
 url_dataset: ""
 url_project: ""

@@ -17,6 +17,10 @@ image:
   caption: 
   focal_point: Right
 links:
+- icon: file-pdf
+  icon_pack: fas
+  name: Slides
+  url: /pdfs/events/cukurova.pdf
 - icon: twitter
   icon_pack: fab
   name: Twitter
@@ -31,7 +35,7 @@ Lenf Diseksiyonu Nereye Kadar?"
 
 title: Çukurova Gastrointestinal Hastalıklar Cerrahisi Kongresi
 url_code: ""
-url_pdf: /pdfs/cukurova/aliguner.pdf
+url_pdf: ""
 url_slides: ""
 url_video: ""
 ---
@@ -39,5 +43,5 @@ url_video: ""
 ![Oturum programı](images/cukurova.jpg)
 
 {{% callout note %}}
-Yukarıdaki **PDF** düğmesine basıp sunum slaytlarına pdf formatında ulaşabilirsiniz. Tüm referansların linkleri pdf sunuma eklenmiştir.
+Yukarıdaki **Slides** düğmesine basıp sunum slaytlarına pdf formatında ulaşabilirsiniz. Tüm referansların linkleri pdf sunuma eklenmiştir.
 {{% /callout %}}

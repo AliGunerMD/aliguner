@@ -27,7 +27,7 @@ categories:
    - Collaborative
    - UGI
 featured: false
-url_pdf: /static/publications/gastros_plusone.pdf
+url_pdf: /pdfs/publications/gastros_plusone.pdf
 url_code: ""
 url_dataset: ""
 url_project: ""

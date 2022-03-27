@@ -26,7 +26,7 @@ tags: []
 categories: 
    - UGI
 featured: true
-url_pdf: /static/publications/dect.pdf
+url_pdf: /pdfs/publications/dect.pdf
 url_code: ""
 url_dataset: ""
 url_project: ""

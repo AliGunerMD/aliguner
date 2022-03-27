@@ -26,7 +26,7 @@ tags: []
 categories: 
    - UGI
 featured: true
-url_pdf: /static/publications/turkey.pdf
+url_pdf: /pdfs/publications/turkey.pdf
 url_code: ""
 url_dataset: ""
 url_project: ""

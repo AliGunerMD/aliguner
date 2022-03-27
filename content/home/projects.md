@@ -29,6 +29,8 @@ content:
     tag: '*'
   - name: AcadeMD
     tag: AcadeMD
+  - name: UGI
+    tag: UGI
   - name: Collaborative
     tag: Collaborative
   - name: Other

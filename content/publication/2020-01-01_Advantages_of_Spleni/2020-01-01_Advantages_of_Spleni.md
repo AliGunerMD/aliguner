@@ -26,7 +26,7 @@ tags: []
 categories: 
    - UGI
 featured: true
-url_pdf: /static/publications/no10.pdf
+url_pdf: /pdfs/publications/no10.pdf
 url_code: ""
 url_dataset: ""
 url_project: ""
