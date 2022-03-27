@@ -31,12 +31,12 @@ summary: "Mide Kanseri Cerrahi Tedavi İlkeleri: Ne Değişti?"
 title: Ulusal Cerrahi Kongresi 2022
 url_code: ""
 url_pdf: /pdfs/uck_2022/aliguner.pdf
-url_slides: /slides/uck2022/index.html
+url_slides: ""
 url_video: ""
 ---
 
 ![Oturum programı](images/uck_01.jpg)
 
 {{% callout note %}}
-Yukarıdaki **Slides** düğmesine basıp sunum slaytlarına ulaşabilirsiniz.
+Yukarıdaki **PDF** düğmesine basıp sunum slaytlarına pdf formatında ulaşabilirsiniz. Tüm referansların linkleri pdf sunuma eklenmiştir.
 {{% /callout %}}

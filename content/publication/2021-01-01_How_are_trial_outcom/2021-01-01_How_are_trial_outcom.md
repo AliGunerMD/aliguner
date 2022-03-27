@@ -24,9 +24,10 @@ abstract: ""
 abstract_short: ""
 tags: []
 categories: 
-   - 
+   - Collaborative
+   - UGI
 featured: false
-url_pdf: ""
+url_pdf: /static/publications/gastros_plusone.pdf
 url_code: ""
 url_dataset: ""
 url_project: ""

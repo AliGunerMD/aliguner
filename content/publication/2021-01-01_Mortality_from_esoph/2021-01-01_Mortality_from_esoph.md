@@ -2,7 +2,7 @@
 date: "2021-01-01"
 external_link: ""
 title: "Mortality from esophagectomy for esophageal cancer across low, middle, and high-income countries: An international cohort study"
-authors: ["Committee {Oesophago-Gastric Anastomotic Audit Collaborative: Writing}", "Committee Steering", "Leads National", "Leads Site", "{Collaborators}"]
+authors: ["Oesophago-Gastric Anastomotic Audit Collaborative"]
 publication_types: ["2"]
 publication: Eur J Surg Oncol
 publication_short: Eur J Surg Oncol. 47 (6); 1481-1488

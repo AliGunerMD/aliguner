@@ -2,7 +2,7 @@
 date: "2022-01-01"
 external_link: ""
 title: "The influence of anastomotic techniques on postoperative anastomotic complications: Results of the Oesophago-Gastric Anastomosis Audit"
-authors: ["Oesophago-Gastric Anastomosis Audit {study group on behalf of the West Midlands Research Collaborative}"]
+authors: ["Oesophago-Gastric Anastomosis Audit Collaborative"]
 publication_types: ["2"]
 publication: J Thorac Cardiovasc Surg
 publication_short: J Thorac Cardiovasc Surg
@@ -25,6 +25,7 @@ abstract_short: ""
 tags: []
 categories: 
    - Collaborative
+   - UGI
 featured: false
 url_pdf: ""
 url_code: ""

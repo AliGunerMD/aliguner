@@ -1,5 +1,5 @@
 ---
-date: "2022-01-01"
+date: "2022-03-01"
 external_link: ""
 title: "Effects of Sarcopenia on Postoperative Outcomes in Patients Who Underwent Gastrectomy for Gastric Cancer"
 authors: ["O. Erkul", "A. B. Cekic", "A. Cansu", "R. Yildirim", "A. Guner"]
@@ -24,7 +24,7 @@ abstract: ""
 abstract_short: ""
 tags: []
 categories: 
-   - KTU
+   - UGI
 featured: true
 url_pdf: ""
 url_code: ""

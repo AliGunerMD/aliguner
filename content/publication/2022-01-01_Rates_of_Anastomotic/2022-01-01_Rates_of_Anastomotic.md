@@ -2,7 +2,7 @@
 date: "2022-01-01"
 external_link: ""
 title: "Rates of Anastomotic Complications and Their Management Following Esophagectomy: Results of the Oesophago-Gastric Anastomosis Audit (OGAA)"
-authors: ["Oesophago-Gastric Anastomosis Study Group {on behalf of the West Midlands Research Collaborative}"]
+authors: ["Oesophago-Gastric Anastomosis Study Collaborative"]
 publication_types: ["2"]
 publication: Ann Surg
 publication_short: Ann Surg. 275 (2); e382-e391
@@ -25,6 +25,7 @@ abstract_short: ""
 tags: []
 categories: 
    - Collaborative
+   - UGI
 featured: false
 url_pdf: ""
 url_code: ""

@@ -9,8 +9,8 @@ headless: true
 # Order that this section appears on the page.
 weight: 80
 
-title: Featured Publications
-subtitle: ""
+title: Key Publications
+subtitle: in Upper GI Surgery
 
 content:
   # Page type to display. E.g. post, talk, publication...
@@ -20,7 +20,7 @@ content:
   # Filter on criteria
   filters:
     author: ""
-    category: ""
+    category: UGI
     publication_type: ""
     tag: ""
   # Page order: descending (desc) or ascending (asc) date.

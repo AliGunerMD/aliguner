@@ -24,9 +24,9 @@ abstract: ""
 abstract_short: ""
 tags: []
 categories: 
-   - 
-featured: false
-url_pdf: ""
+   - UGI
+featured: true
+url_pdf: /static/publications/turkey.pdf
 url_code: ""
 url_dataset: ""
 url_project: ""
