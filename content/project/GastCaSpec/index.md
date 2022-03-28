@@ -2,8 +2,9 @@
 date: "2022-03-15T00:00:00Z"
 external_link: ""
 image:
-  caption: 
-  focal_point: Smart
+  caption: "photo by [**RF_studio**](https://www.pexels.com/photo/crop-astrophysicist-exploring-surface-of-moon-while-using-tablet-in-university-3825567/) on **Pexels**"
+  focal_point: ""
+
 links:
 - icon: preregistered
   icon_pack: ai

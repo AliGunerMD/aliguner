@@ -7,21 +7,21 @@ main:
   - name: Home
     url: '#about'
     weight: 10
-  - name: Blog
-    url: '#posts'
-    weight: 65
-  # - name: Projects
-  #   url: '#projects'
-  #   weight: 30
   - name: Talks
     url: event/
     weight: 40
   - name: Publications
     url: publication/
     weight: 50
+  - name: Projects
+    url: '#projects'
+    weight: 55
   - name: Library
     url: courses/
     weight: 60
+  - name: Blog
+    url: '#posts'
+    weight: 65
   # - name: CV
   #   url: "uploads/resume.pdf"
   #   weight: 70
