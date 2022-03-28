@@ -4,6 +4,7 @@ linkTitle: Gregor'u ararken
 summary: kafkaya yanıtımdır (22-25 Ocak 2021 tarihlerinde yayınlandı)
 title: "\U0001F577 Gregor'u ararken"
 type: book
+toc: false
 ---
 
 {{< figure src="featured.jpeg" >}}
