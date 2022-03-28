@@ -1,16 +1,15 @@
 ---
-date: "2022-03-29T00:00:00Z"
+date: "2022-03-28T00:00:00Z"
 external_link: ""
 image:
   caption: "photo by [**Tara Winstead**](https://www.pexels.com/photo/robot-pointing-on-a-wall-8386440/) on **Pexels**"
   focal_point: ""
 
 slides: 
-summary: "To compare the RNN model with other survival models (Cox regression, Time-dependent Cox, Random Forest, and DeepSurv)."
+summary: To compare the RNN model with other survival models (Cox regression, Time-dependent Cox, Random Forest, and DeepSurv)
 tags:
 - UGI
 title: Survival Analysis with Artificial Intelligence Approach in Gastric Cancer
-
 url_code: ""
 url_pdf: ""
 url_slides: ""
