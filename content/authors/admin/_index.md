@@ -27,8 +27,7 @@ email: draliguner@yahoo.com
 highlight_name: true
 interests:
 - Esophageal and Gastric Cancer
-- Regression
-- Survival analysis
+- Regression/Survival analysis
 - Data visualization in Medicine
 - AI
 - Academic productivity
