@@ -17,4 +17,4 @@ Hikaye: **HemLock**
 Yazan ve Hikaye fotoğrafları: **Ali Güner**  
 
 
-{{< cta cta_text="Minimalist prensipler" cta_link="uyanis" >}}
+{{< cta cta_text="Minimalizmden önce" cta_link="2015-11-13-minimalizmden-once" >}}
