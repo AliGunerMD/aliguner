@@ -8,3 +8,5 @@ Thumbs.db
 /public
 /resources
 bibtex
+/renv
+renv.lock

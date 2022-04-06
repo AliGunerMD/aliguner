@@ -27,7 +27,7 @@ categories:
    - Collaborative
    - UGI
 featured: true
-url_pdf: ""
+url_pdf: /pdfs/publications/gastros_methods.pdf
 url_code: ""
 url_dataset: ""
 url_project: ""

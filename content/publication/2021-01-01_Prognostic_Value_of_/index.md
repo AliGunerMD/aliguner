@@ -26,7 +26,7 @@ tags: []
 categories: 
    - UGI
 featured: true
-url_pdf: ""
+url_pdf: /pdfs/publications/fonc.pdf
 url_code: ""
 url_dataset: ""
 url_project: ""
