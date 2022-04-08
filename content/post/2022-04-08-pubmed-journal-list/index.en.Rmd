@@ -1,6 +1,5 @@
 ---
 title: "PubMed Journal List (2022)"
-author: Ali GUNER
 date: '2022-04-08'
 slug: pubmed-journal-list
 categories:
@@ -8,7 +7,7 @@ categories:
 tags: []
 subtitle: With a downloadable link (.xlsx)
 summary: List of All Journals Cited in PubMed 
-authors: []
+authors: [admin]
 lastmod: '2022-04-08T13:01:16+03:00'
 featured: no
 image:
@@ -29,8 +28,6 @@ url_project: ""
 url_slides: ""
 url_source: ""
 url_video: ""
-editor_options: 
-  chunk_output_type: console
 ---
 
 ```{r setup, include=FALSE}
