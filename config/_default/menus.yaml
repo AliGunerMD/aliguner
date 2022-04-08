@@ -15,13 +15,13 @@ main:
     weight: 50
   - name: Projects
     url: '#projects'
-    weight: 55
+    weight: 15
   - name: Library
     url: courses/
     weight: 60
   - name: Blog
     url: '#posts'
-    weight: 65
+    weight: 45
   # - name: CV
   #   url: "uploads/resume.pdf"
   #   weight: 70
