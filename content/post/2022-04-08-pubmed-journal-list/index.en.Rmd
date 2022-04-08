@@ -6,8 +6,8 @@ slug: pubmed-journal-list
 categories:
   - AcadeMD
 tags: []
-subtitle: ''
-summary: List of All Journals Cited in PubMed
+subtitle: With a downloadable link (.xlsx)
+summary: List of All Journals Cited in PubMed 
 authors: []
 lastmod: '2022-04-08T13:01:16+03:00'
 featured: no
@@ -21,7 +21,7 @@ links:
  - icon: github
    icon_pack: fab
    name: GitHub
-   url: "https://github.com/AliGunerMD/aliguner/tree/main/content/post/2022-04-08-pubmed-journal-list/index.en.Rmarkdown/"
+   url: "https://github.com/AliGunerMD/aliguner/blob/main/content/post/2022-04-08-pubmed-journal-list/index.en.Rmd"
 url_pdf: ""
 url_code: ""
 url_dataset: ""
