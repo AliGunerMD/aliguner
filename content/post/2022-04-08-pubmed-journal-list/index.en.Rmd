@@ -13,8 +13,8 @@ lastmod: '2022-04-08T13:01:16+03:00'
 featured: no
 image:
   caption: ''
-  focal_point: Right
-  preview_only: yes
+  focal_point: ''
+  preview_only: no
 projects: 
  - AcadeMD
 links:
