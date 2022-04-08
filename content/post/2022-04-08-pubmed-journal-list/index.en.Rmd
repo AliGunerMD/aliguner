@@ -49,12 +49,8 @@ The link ["Pubmed journal list"](https://ftp.ncbi.nih.gov/pubmed/J_Medline.txt) 
 or you can directly (by using read_tsv()) download the file from [ftp link](ftp://ftp.ncbi.nih.gov/pubmed/J_Medline.txt).
 
 ```{r}
-## from pubmed database -> https://www.nlm.nih.gov/bsd/serfile_addedinfo.html
-## from ftp -> ftp://ftp.ncbi.nih.gov/pubmed/J_Medline.txt
-
 pubmed_journal_downloaded <- read_tsv("ftp://ftp.ncbi.nih.gov/pubmed/J_Medline.txt",
                         col_names = "pubmed") 
-
 ```
 <br>
 
@@ -62,14 +58,6 @@ pubmed_journal_downloaded <- read_tsv("ftp://ftp.ncbi.nih.gov/pubmed/J_Medline.t
 Here is the example how it looks in PubMed website. The dataset actually has `r nrow(pubmed_journal_downloaded)` rows with one column (>8 mb). 
 ![](./pubmed_org.jpg)
 
-```{r, eval = FALSE}
-# the file is > 8mb. So, You can download it as a local file first. and then read it from local.  
-# or you can use {r, cache = TRUE} option. 
-# But be careful about the updates in the file. Using {cache.extra = tools::md5sum("")} option may be needed.
-
-# pubmed_journal_list <- read_tsv("./data/downloaded-data/J_Medline.txt",
-#                         col_names = "pubmed")
-```
 <br>
 ```{r}
 pubmed_journal_list <- pubmed_journal_downloaded %>%         
@@ -83,7 +71,6 @@ pubmed_journals_wide <- pubmed_journal_list %>%
           pubmed = replace(pubmed, pubmed=="MedAbbr:", "MedAbbr: " ),
           pubmed = replace(pubmed, pubmed=="IsoAbbr:", "IsoAbbr: " )) %>% 
   separate(pubmed, c("variable", "text"), sep = ": ", fill = "right") %>% 
-  # mutate (text = str_trim(text)) %>% 
   pivot_wider (names_from = "variable", values_from = "text") %>% 
   clean_names() %>% 
   select(-row_number)
@@ -92,9 +79,6 @@ pubmed_journals_wide <- pubmed_journal_list %>%
 
 ```{r}
 pubmed_journals_all <- pubmed_journals_wide %>% 
-  # mutate(issn_online = noquote(issn_online)) %>% 
-   # mutate_at (.vars= c("issn_print","issn_online"),
-   #           .funs = list(~ifelse(. == "", "", as.character(.)))) %>% 
   mutate (journal_title = str_to_title(journal_title),
           journal_title = str_replace_all(journal_title, "[[:punct:]]", ""),
           journal_title = str_trim(journal_title),
@@ -117,6 +101,7 @@ pubmed_journals_all <- pubmed_journals_wide %>%
 ```{r, eval = FALSE}
 # Corrected format in DT
 # If you want to see as datatable, use this. The data is too big for client-side datatables.
+
 pubmed_journals_all %>%
   DT::datatable(fillContainer = FALSE, caption = "List of Journals Cited in PubMed")
 ```
@@ -137,7 +122,7 @@ pubmed_journals_all %>%
 ```{r}
 pubmed_journals_all %>%
   download_this(
-    output_name = "PubMed Journal List",
+    output_name = "PubMed Journal List 2022",
     output_extension = ".xlsx",
     button_label = "Download full list as an excel file",
     button_type = "success",
