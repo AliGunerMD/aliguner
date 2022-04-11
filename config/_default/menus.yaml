@@ -20,7 +20,7 @@ main:
     url: courses/
     weight: 60
   - name: Blog
-    url: '#posts'
+    url: post/
     weight: 45
   # - name: CV
   #   url: "uploads/resume.pdf"
