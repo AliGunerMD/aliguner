@@ -6,6 +6,7 @@ image:
   focal_point: Smart
 summary: An education and mentorship project
 tags:
+- AcadeMD
 title: AcadeMD
 ---
 
