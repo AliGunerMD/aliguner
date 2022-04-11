@@ -33,8 +33,6 @@ content:
     tag: UGI
   - name: Collaborative
     tag: Collaborative
-  - name: Other
-    tag: other
 
 design:
   # Choose how many columns the section has. Valid values: '1' or '2'.
