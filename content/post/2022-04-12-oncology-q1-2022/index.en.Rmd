@@ -1,0 +1,235 @@
+---
+title: "Oncology - Q1 Journal list"
+date: '2022-04-12T22:13:27+03:00'
+subtitle: 'List of all Q1 Journals (WOS-IF) in the category "Oncology"'
+summary: 'List of all Q1 Journals (WOS-IF) in the category "Oncology"'
+authors: [admin]
+slug: oncology-q1-2022
+categories:
+  - AcadeMD
+tags:
+  - WOS
+lastmod: '2022-04-12T16:13:27+03:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: 
+  - AcadeMD
+links:
+ - icon: github
+   icon_pack: fab
+   name: GitHub
+   url: "https://github.com/AliGunerMD/aliguner/blob/main/content/post/2022-04-12-oncology-q1-2022/index.en.Rmd"
+ - icon: link
+   icon_pack: fas
+   name: Clarivate
+   url: "https://jcr.clarivate.com/jcr/browse-journals"
+url_pdf: ""
+url_code: ""
+url_dataset: ""
+url_project: ""
+url_slides: ""
+url_source: ""
+url_video: ""
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+```
+
+
+```{r import library}
+library(tidyverse)
+library(scales)
+library(readxl)
+library(here)
+library(janitor)
+library(flextable)
+library(ggrepel)
+theme_set(theme_light())
+
+myblues <- c("#F7FBFF", "#DEEBF7", "#C6DBEF", "#9ECAE1", "#6BAED6", "#4292C6", "#2171B5" ,"#084594")
+```
+
+
+
+```{r}
+imported_data <- read_csv(here("datasets", "wos_2022_oncology.csv"),
+         skip = 2,
+         na = c("n/a", "N/A", "")) %>% 
+  clean_names() %>% 
+  slice(1:(nrow(.)-2)) 
+
+```
+
+
+Here is the example of WOS dataset downloaded from the [Journal Citation Reports](https://jcr.clarivate.com/jcr/browse-journals). Filters were;   
+**Categories:** Oncology  
+**JCR Year:** 2020  (Up-to-date list)  
+**Citation indexes:** SCIE, ESCI  
+
+Original dataset includes `r nrow(imported_data)` rows and `r ncol(imported_data)` columns. Only `r imported_data %>% count(category) %>% filter(category == "ONCOLOGY - SCIE") %>% pull(n)` are indexed in SCIE, and remaining `r imported_data %>% count(category) %>% filter(category == "ONCOLOGY - ESCI") %>% pull(n)` journals are in ESCI index.
+
+# Original dataset
+```{r}
+set.seed(2020)
+imported_data %>% 
+  sample_n(6) %>% 
+  knitr::kable(caption = "An example of WOS dataset (6 random rows)")
+```
+
+<br>
+
+# Full list 
+
+```{r}
+clean_data <- imported_data %>% 
+  mutate(across(everything(), ~str_replace_all(., ",", ""))) %>% 
+  mutate(journal_name = str_to_title(journal_name),
+         journal_name = if_else(str_detect(journal_name, "Jama"), str_replace_all(journal_name, "Jama", "JAMA"), journal_name),
+         journal_name = if_else(str_detect(journal_name, "Ejso"), str_replace_all(journal_name, "Ejso", "EJSO"), journal_name),
+         journal_name = if_else(str_detect(journal_name, "Esmo"), str_replace_all(journal_name, "Esmo", "ESMO"), journal_name),
+         journal_name = if_else(str_detect(journal_name, "Jnci-"), str_replace_all(journal_name, "Jnci-", "JNCI-"), journal_name),
+         journal_name = if_else(str_detect(journal_name, "Npj "), str_replace_all(journal_name, "Npj ", "npj "), journal_name), 
+         journal_name = if_else(str_detect(journal_name, " Of "), str_replace_all(journal_name, " Of ", " of "), journal_name),
+         journal_name = if_else(str_detect(journal_name, " Et "), str_replace_all(journal_name, " Et ", " et "), journal_name),
+         journal_name = if_else(str_detect(journal_name, " And "), str_replace_all(journal_name, " And ", " and "), journal_name),
+         journal_name = if_else(str_detect(journal_name, " The "), str_replace_all(journal_name, " The ", " the "), journal_name),
+         journal_name = if_else(str_detect(journal_name, " In "), str_replace_all(journal_name, " In ", " in "), journal_name),
+         journal_name = if_else(str_detect(journal_name, " For "), str_replace_all(journal_name, " For ", " for "), journal_name)) %>% 
+      mutate(across(everything(), ~str_replace_all(., ",", " "))) %>% 
+  mutate_at(c("total_citations", "x2020_jif", "x2020_jci", "x5_year_jif", "jif_without_self_cites", "immediacy_index", "normalized_eigenfactor", "eigenfactor", "article_influence_score", "jif_percentile", "total_articles", "citable_items"), as.numeric)
+```
+
+
+```{r}
+link <- "https://jcr.clarivate.com/jcr/browse-journals"
+
+
+
+
+table_2022_q1 <- clean_data %>% 
+  filter(jif_quartile == "Q1") %>% 
+  select(journal_name, x2020_jif, jif_without_self_cites,  total_citations, total_articles, citable_items)
+```
+
+
+```{r}
+table_q1_2022_oncology <- table_2022_q1 %>% 
+  flextable() %>%
+  set_table_properties(width = 1, layout = "autofit") %>% 
+  set_header_labels(i = 1, "journal_name" = "Journal name", "x2020_jif" = "Impact factor",  "jif_without_self_cites" = "IF without self-citation" , "total_citations" = "# of citations", "total_articles" =  "# of articles", "citable_items" = "# of citable items" ) %>% 
+ theme_booktabs() %>% 
+ align(part = "all", align = "center", j=2:ncol(table_2022_q1)) %>% 
+ add_header_lines(paste0('The list of ',nrow(table_2022_q1),' WOS-Q1 journals in the category "Oncology" \n(year = 2020, released in 2021)')) %>% 
+ fontsize(part = "header", size = 14, i = 1) %>% 
+ align(part = "header", align = "center", i=1) %>% 
+ align(part = "header", align = "center", i=2, j = 2:ncol(table_2022_q1)) %>% 
+ bold(part = "header") %>% 
+ color(part = "header", i=1, color = "#666666") %>% 
+ bg(bg = myblues[4], part = "header", i=2) %>% 
+ border_remove(.) %>% 
+ hline(part="header", i = 1:2) %>% 
+ hline(part="body", i = nrow(table_2022_q1)) %>% 
+ add_footer_lines ("Source: Clarivate") %>% 
+ color(part = "footer", color = "#666666") %>% 
+ align(part = "footer", align = "right",  i=1) %>% 
+ compose(part = "footer", value = as_paragraph(hyperlink_text(x= "Data source: Clarivate", url = link))) %>% 
+ add_footer_lines("designed by @AliGunerMD")
+```
+
+```{r}
+table_q1_2022_oncology
+```
+
+
+```{r}
+# Featured figure
+ 
+ labelInfo <- data.frame(
+  g = c("Ca-A Cancer Journal for Clinicians (IF = 508.7) and \n
+    Cancers (citable items = 3740) were ignored "))
+  
+ 
+ set.seed(2022)
+ figure_q1_onc <- table_2022_q1 %>% 
+  arrange(desc(x2020_jif)) %>% 
+  filter(!journal_name %in% c("Ca-A Cancer Journal for Clinicians", "Cancers")) %>% 
+  ggplot(aes(citable_items, x2020_jif, label = journal_name)) +
+  geom_point(aes(color = x2020_jif, size = total_citations)) +
+  scale_color_continuous(type = "viridis", trans = 'reverse') +
+  scale_y_continuous(labels = number_format(accuracy = 1), breaks = seq(0, 70, 10), expand = c(0, 0), limits = c(0, 70)) +
+  scale_x_continuous(labels = comma_format(), breaks = c(0,100,200, 300, 400, 500, 1000), expand = c(0, 0), limits = c(0, 1000)) +
+  scale_size(breaks = c(1e4, 2.5e4, 5e4, 10e4, 15e4,  20e4), labels = c("10k", "25k", "50k","100k","150k","200k")) +
+  expand_limits(y = 0) +
+  labs(title = 'WOS-Q1 journals in the category "Oncology" ',
+       subtitle = "Relationship among the IF, the # of citable items, and the # of total citations",
+       y = "Impact factor",
+       x = "Citable items",
+       size = "# of citations",
+       caption = "Data source: Clarivate\ndesigned by @AliGunerMD") +
+  theme(panel.grid.minor = element_blank(),
+        panel.grid.major = element_line(color = "#E8E8E8"),
+        plot.title = element_text(hjust = .5, face = "bold"),
+        plot.subtitle = element_text(hjust = .5),
+        panel.border = element_blank(),
+        axis.line =  element_line(color = "#404040"),
+        axis.ticks = element_line(color = "#101010")) +
+  guides(color = "none", 
+         size = guide_legend(reverse = TRUE,
+                         title.hjust = 0.5,
+                         label.hjust = 1)) +
+   geom_text_repel(
+     data = subset(table_2022_q1, x2020_jif > 60),
+     nudge_x = 200,
+     box.padding = 0.5,
+     nudge_y = 0,
+     segment.size  = 0.2,
+     segment.color = "#C0C0C0",
+     direction = "x",
+     max.iter = Inf) +
+   geom_text_repel(
+     data = subset(table_2022_q1, x2020_jif > 20 &  x2020_jif < 60),
+     nudge_x = 200,
+     box.padding = 0.5,
+     nudge_y = 5,
+     segment.size  = 0.2,
+     segment.color = "#C0C0C0",
+     direction = "x",
+     max.iter = Inf) +
+    geom_text_repel(
+     data = subset(table_2022_q1, x2020_jif < 20 & x2020_jif > 13 &  citable_items < 200),
+     nudge_x = 20,
+     box.padding = 0.5,
+     nudge_y = 10,
+     segment.size  = 0.2,
+     segment.color = "#C0C0C0",
+     direction = "y") +
+   geom_text_repel(
+     data = subset(table_2022_q1, citable_items > 400),
+     nudge_x = 100,
+     box.padding = 0.5,
+     nudge_y = 12,
+     segment.size  = 0.2,
+     segment.color = "#C0C0C0",
+     direction = "y",
+     max.iter = Inf) +
+   geom_label_repel(
+     data = labelInfo, 
+     mapping = aes(800, 65, label = g),
+     size = 4,
+     hjust = c(0))
+ 
+ ggsave(
+   figure_q1_onc,
+   file =file.path ("featured.jpg"), 
+   width = 9.7,
+   height = 8.1
+   )
+ 
+ 
+
+```
+
+
