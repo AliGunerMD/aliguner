@@ -14,7 +14,7 @@ links:
  - icon: pubmed
    icon_pack: ai
    name: PubMed
-   url: https://www.ncbi.nlm.nih.gov/pubmed/
+   url: https://pubmed.ncbi.nlm.nih.gov/35623378/
  - icon: doi
    icon_pack: ai
    name: DOI
