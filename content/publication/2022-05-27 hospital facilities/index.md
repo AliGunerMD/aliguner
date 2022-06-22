@@ -1,5 +1,5 @@
 ---
-date: "2022-05-27"
+date: "2022-05-26"
 external_link: ""
 title: "Effects of hospital facilities on patient outcomes after cancer surgery: an international, prospective, observational study"
 authors: ["GlobalSurg Collaborative", "NIHR Global Health Research Unit on Global Surgery"]
