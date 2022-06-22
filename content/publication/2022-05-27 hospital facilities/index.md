@@ -5,7 +5,7 @@ title: "Effects of hospital facilities on patient outcomes after cancer surgery:
 authors: ["GlobalSurg Collaborative", "NIHR Global Health Research Unit on Global Surgery"]
 publication_types: ["2"]
 publication: Lancet Global Health
-publication_short: Lancet Glob Health 2022
+publication_short: Lancet Glob Health 2022;10(7):e1003-e1011
 image:
     caption: ""
     focal_point: ""
