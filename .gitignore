@@ -11,3 +11,5 @@ bibtex
 /renv
 renv.lock
 /datasets
+(^|/)renv$
+renv\\.lock$
