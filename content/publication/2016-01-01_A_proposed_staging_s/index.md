@@ -25,7 +25,7 @@ abstract_short: ""
 tags: []
 categories: 
    - 
-featured: true
+featured: false
 url_pdf: /pdfs/publications/staging.pdf
 url_code: ""
 url_dataset: ""
