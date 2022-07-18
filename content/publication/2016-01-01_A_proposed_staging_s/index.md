@@ -26,7 +26,7 @@ tags: []
 categories: 
    - 
 featured: true
-url_pdf: ""
+url_pdf: /pdfs/publications/staging.pdf
 url_code: ""
 url_dataset: ""
 url_project: ""
