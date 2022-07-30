@@ -72,7 +72,7 @@ title: Ali GUNER
 MD, PhDc, BA, FACS 
   
 A surgeon who has lost his mind with the treatment of gastric cancer..  
-An academic who enjoys to play with the computers..  
+An academic who enjoys to play with computers..  
 A data scientist who believes that the future of science is in data..  
 A visionary waiting for the irony of artificial intelligence to turn into reality..  
 A photographer in pursuit of the abstract details of the universe..  
