@@ -3,7 +3,7 @@ abstract: Mide kanseri tedavisinde kanıta-dayalı tüm güncel gelişmelerin ö
 address:
   city: Antalya
   country: Turkey
-  postcode: ""
+  postcode: "  "
   region: Belek
   street: İleribaşı Mevkii
 all_day: false
