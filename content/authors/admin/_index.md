@@ -6,13 +6,13 @@ education:
     institution: Istanbul University, Istanbul Faculty of Medicine
     year: 1996-2002
   - course: Fellow of Upper GI Surgery Division
-    institution: Yonsei University, Robotic and Minimal Invasive Surgery Center
+    institution: Yonsei University, Robotic and Minimal Invasive Surgery Center, Seoul/South Korea
     year: 2012
   - course: Fellow of Upper GI Surgery Division
-    institution: Yonsei University, Gastric Cancer Clinic
+    institution: Yonsei University, Gastric Cancer Clinic, Seoul/South Korea
     year: 2013-2014
   - course: Visiting Surgeon of Upper GI Surgery Division
-    institution: Kyoto University, Upper GI Cancer Clinic
+    institution: Kyoto University, Upper GI Cancer Clinic, Kyoto/Japan
     year: 2014
   - course: Bachelor's degree in Philosophy
     institution: Anadolu University
@@ -27,9 +27,9 @@ email: draliguner@yahoo.com
 highlight_name: true
 interests:
 - Esophageal and Gastric Cancer
+- Anything related to Stomach
 - Regression/Survival analysis
 - Data visualization in Medicine
-- AI
 - Academic productivity
 - Minimalism
 - Photography
