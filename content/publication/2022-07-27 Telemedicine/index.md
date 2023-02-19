@@ -2,7 +2,7 @@
 date: "2023-03-01"
 external_link: ""
 title: "Impact of malnutrition on early outcomes after cancer surgery: an international, multicentre, prospective cohort study"
-authors: ["GlobalSurg Collaborative"; "NIHR Global Health Unit on Global Surgery"]
+authors: ["GlobalSurg Collaborative", "NIHR Global Health Unit on Global Surgery"]
 publication_types: ["2"]
 publication: Lancet Glob Health
 publication_short: Lancet Glob Health. 2023 Mar;11(3):e341-e349

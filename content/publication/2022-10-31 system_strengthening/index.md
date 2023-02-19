@@ -2,7 +2,7 @@
 date: "2022-10-31"
 external_link: ""
 title: "Elective surgery system strengthening: development, measurement, and validation of the surgical preparedness index across 1632 hospitals in 119 countries"
-authors: ["NIHR Global Health Unit on Global Surgery"; "COVIDSurg Collaborative"]
+authors: ["NIHR Global Health Unit on Global Surgery", "COVIDSurg Collaborative"]
 publication_types: ["2"]
 publication: Lancet
 publication_short: Lancet 2022 Nov 5;400(10363):1607-1617
