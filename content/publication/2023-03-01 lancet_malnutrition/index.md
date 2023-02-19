@@ -1,5 +1,5 @@
 ---
-date: "2022-12-01"
+date: "2023-02-01"
 external_link: ""
 title: "Impact of malnutrition on early outcomes after cancer surgery: an international, multicentre, prospective cohort study"
 authors: ["NIHR Global Health Unit on Global Surgery", "COVIDSurg Collaborative"]
