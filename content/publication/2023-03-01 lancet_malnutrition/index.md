@@ -18,7 +18,7 @@ links:
  - icon: doi
    icon_pack: ai
    name: DOI
-   url: https://doi.org/10.1016/S2214-109X(22)00550-2.
+   url: https://doi.org/10.1016/S2214-109X(22)00550-2
 slides: ""
 abstract: ""
 abstract_short: ""
@@ -26,7 +26,7 @@ tags: []
 categories: 
    - Collaborative
 featured: false
-url_pdf: /pdfs/publications/lancet_malnutrition.pdf
+url_pdf: ""
 url_code: ""
 url_dataset: ""
 url_project: ""
