@@ -1,11 +1,11 @@
 ---
-date: "2022-07-31"
+date: "2023-03-01"
 external_link: ""
-title: "Use of Telemedicine for Post-discharge Assessment of the Surgical Wound: International Cohort Study, and Systematic Review with Meta-analysis"
-authors: ["NIHR Global Health Unit on Global Surgery"; "GlobalSurg Collaborative"]
+title: "Impact of malnutrition on early outcomes after cancer surgery: an international, multicentre, prospective cohort study"
+authors: ["GlobalSurg Collaborative"; "NIHR Global Health Unit on Global Surgery"]
 publication_types: ["2"]
-publication: Annals of Surgery
-publication_short: Ann Surg. 2022 Jun 27
+publication: Lancet Glob Health
+publication_short: Lancet Glob Health. 2023 Mar;11(3):e341-e349
 image:
     caption: ""
     focal_point: ""
@@ -14,11 +14,11 @@ links:
  - icon: pubmed
    icon_pack: ai
    name: PubMed
-   url: https://pubmed.ncbi.nlm.nih.gov/36626409/
+   url: https://pubmed.ncbi.nlm.nih.gov/36796981/
  - icon: doi
    icon_pack: ai
    name: DOI
-   url: https://doi.org/10.1097/SLA.0000000000005506
+   url: https://doi.org/10.1016/S2214-109X(22)00550-2.
 slides: ""
 abstract: ""
 abstract_short: ""
@@ -26,7 +26,7 @@ tags: []
 categories: 
    - Collaborative
 featured: false
-url_pdf: ""
+url_pdf: /pdfs/publications/lancet_malnutrition.pdf
 url_code: ""
 url_dataset: ""
 url_project: ""
