@@ -1,3 +1,3 @@
 # aliguner
-Personal website (under construction) 
-previous WP-based website is still ongoing.
+Personal website!
+previous WP-based website has been deleted.
