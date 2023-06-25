@@ -78,4 +78,4 @@ A visionary waiting for the irony of artificial intelligence to turn into realit
 A photographer in pursuit of the abstract details of the universe..  
 Epicurean..  
 
-{{< icon name="download" pack="fas" >}} Download my {{< staticref "uploads/resume.pdf" "newtab" >}}academic CV{{< /staticref >}}.
+{{< icon name="download" pack="fas" >}} Download my {{< staticref "uploads/myCV.pdf" "newtab" >}}academic CV{{< /staticref >}}.
