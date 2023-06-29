@@ -1,6 +1,6 @@
 ---
 date: "2021-01-02"
-title: "🐥 TwittExit "
+title: "🐥 TwittExit (Ocak 2021)"
 type: book
 summary: 2021 de Twitter hesabımı neden kapattım?
 weight: 10

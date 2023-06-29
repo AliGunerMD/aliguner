@@ -4,7 +4,7 @@ linkTitle:
 summary: Eski bloglarımda yer alan bazı denemeler
 title: "Eski blog yazılarım"
 type: book
-toc: false
+toc: true
 ---
 
 {{< figure src="featured.jpeg" >}}
