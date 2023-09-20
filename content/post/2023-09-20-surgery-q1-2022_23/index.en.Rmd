@@ -167,7 +167,7 @@ table_q1_2023_surgery <- table_2023_q1 %>%
   set_header_labels(i = 1, "journal_name" = "Journal name", "x2022_jif" = "Impact factor",  "jif_without_self_cites" = "IF without self-citation" , "total_citations" = "# of citation", "total_articles" =  "# of article", "citable_items" = "# of citable items" ) %>% 
  theme_booktabs() %>% 
  align(part = "all", align = "center", j=2:ncol(table_2023_q1)) %>% 
- add_header_lines(paste0('The list of ', nrow(table_2023_q1),' WOS-Q1 journals in the category "Surgery" \n(year = 2021, released in June 2022)')) %>% 
+ add_header_lines(paste0('The list of ', nrow(table_2023_q1),' WOS-Q1 journals in the category "Surgery" \n(year = 2022, released in July 2023)')) %>% 
  fontsize(part = "header", size = 14, i = 1) %>% 
  align(part = "header", align = "center", i=1) %>% 
  align(part = "header", align = "center", i=2, j = 2:ncol(table_2023_q1)) %>% 
