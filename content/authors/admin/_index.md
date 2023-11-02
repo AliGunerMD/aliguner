@@ -69,7 +69,7 @@ social:
 superuser: true
 title: Ali GUNER
 ---
-MD, PhDc, BA, FACS 
+MD, PhD, BA, FACS 
   
 A surgeon who has lost his mind with the treatment of gastric cancer..  
 An academic who enjoys to play with computers..  
