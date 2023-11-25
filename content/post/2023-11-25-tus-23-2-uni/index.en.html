@@ -1,0 +1,433 @@
+---
+title: "TUS 2023 II.Dönem Sonuçları (Kurum Bazında)"
+date: '2023-11-25T13:14:22+03:00'
+subtitle: 'Kurum bazında branşların MIN-MAX puanları'
+summary: 'TUS 2023 II.Dönem - Kurum bazında branşların MIN-MAX puanlar'
+authors: [admin]
+slug: tus-2023-2-uni
+categories:
+  - AcadeMD
+tags:
+  - OSYM
+  - TUS
+  - Üniversite
+lastmod: '2023-11-25T16:14:22+03:00'
+featured: yes
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: 
+  - AcadeMD
+links:
+ - icon: link
+   icon_pack: fas
+   name: "ÖSYM"
+   url: "https://dokuman.osym.gov.tr/pdfdokuman/2023/TUSDONEM-2/TERCIH/minmax17112023.pdf"
+ - icon: github
+   icon_pack: fab
+   name: GitHub
+   url: "https://github.com/AliGunerMD/aliguner/blob/main/content/post/2023-11-25-tus-23-2-uni/index.en.Rmd"
+ - icon: sistrix
+   icon_pack: fab
+   name: Outputs
+   url: "https://github.com/AliGunerMD/aliguner/blob/main/content/post/2023-11-25-tus-23-2-uni/Outputs_2023_2_uni"
+url_pdf: ""
+url_code: ""
+url_dataset: ""
+url_project: ""
+url_slides: ""
+url_source: ""
+url_video: ""
+editor_options: 
+  chunk_output_type: console
+---
+
+
+
+<p>Kurum spesifik sonuçları görmek için;</p>
+<p>Üniversiteler için: <a href="https://github.com/AliGunerMD/aliguner/blob/main/content/post/2023-11-25-tus-23-2/Outputs_2023_2-uni/data_uni">Üniversiteler</a>,<br />
+Eğitim ve Araştırma Hastaneleri için: <a href="https://github.com/AliGunerMD/aliguner/blob/main/content/post/2023-11-25-tus-23-2-uni/Outputs_2023_2/data_eah">Eğitim ve Araştırma Hastaneleri</a>,<br />
+Şehir Hastaneleri için: <a href="https://github.com/AliGunerMD/aliguner/blob/main/content/post/2023-11-25-tus-23-2-uni/Outputs_2023_2/data_sehir">Şehir Hastaneleri</a><br />
+sayfalarına gidebilirsiniz.</p>
+<p>Merak edenler kodları görmek isterse de <a href="https://github.com/AliGunerMD/aliguner/blob/main/content/post/2023-11-25-tus-23-2-uni/Outputs_2023_2">Outputs</a> sayfasına; ya da <a href="https://github.com/AliGunerMD/aliguner/blob/main/content/post/2023-11-25-tus-23-2-uni/index.en.Rmd">GitHub</a> sayfasına gidebilirsiniz.</p>
+<p><br>
+<br>
+<br>
+<br>
+Veriler ÖSYM sayfasından .pdf dosyası olarak alınıp, R yazılımı ile düzenlenmiştir.
+Orjinal veri dosyasında Genel/Yabancı Uyruklu ayrımı bazı merkezler için hatalı yazılmıştır. Daha yüksek kontenjanı olan satırın doğru olduğu varsayılarak diğer satır dışlanmıştır.</p>
+<p><br>
+Veri seti ile ilgili farklı bir değerlendirme isterseniz <a href="https://twitter.com/AliGunerMD">Twitter</a> üzerinden ya da <a href="https://www.aliguner.com/">iletişim formu</a> ile ulaşabilirsiniz.</p>
+<p><br>
+Yabancı Uyruklu kontenjanları verilere dahil edilmemiştir.</p>
+<p><br>
+p.s.: Çıktılar tek tek kontrol edilmemiştir.</p>
+<div id="r-codes" class="section level2">
+<h2>R Codes</h2>
+<div id="import-libraries" class="section level3">
+<h3>Import libraries</h3>
+<pre class="r"><code>#| label: Import libraries
+
+# Define the required package names
+packages &lt;- c(&quot;tidyverse&quot;, 
+              &quot;here&quot;, 
+              &quot;pdftools&quot;, 
+              &quot;glue&quot;, 
+              &quot;ggtext&quot;)
+
+# Function to check, install, and load packages
+load_packages &lt;- function(packages) {
+        
+  for (package in packages) {
+    if (!require(package, character.only = TRUE)) {
+        install.packages(package)
+        library(package, character.only = TRUE)
+    } else {
+      suppressPackageStartupMessages(library(package, character.only = TRUE))
+        # library(package, character.only = TRUE)
+    }
+  }
+}
+
+load_packages(packages)</code></pre>
+</div>
+<div id="import-dataset-from-ösym-link" class="section level3">
+<h3>Import dataset from <a href="https://dokuman.osym.gov.tr/pdfdokuman/2023/TUSDONEM-2/TERCIH/minmax17112023.pdf">ÖSYM link</a></h3>
+<pre class="r"><code>kadro_tus &lt;- pdftools::pdf_text(pdf = here::here(&quot;datasets&quot;, &quot;minmax17112023.pdf&quot;)) %&gt;%
+  as_tibble()</code></pre>
+</div>
+<div id="clean-dataset" class="section level3">
+<h3>Clean dataset</h3>
+<pre class="r"><code>kadro_tus_init &lt;- kadro_tus %&gt;%
+  separate_rows(value, sep = &quot;\n&quot;) %&gt;%
+  mutate(value = str_squish(value)) %&gt;%
+  filter(value != &quot;&quot;) %&gt;%
+  mutate(value = str_remove_all(value, &quot; dipnot \\d&quot;)) %&gt;%
+  filter(!str_detect(value, &quot;Kontenjan|2023-TUS&quot;)) %&gt;%
+  extract(value, into = c(&quot;kurum&quot;, &quot;b&quot;), &quot;(.*)/(.*)&quot;) %&gt;%
+  extract(b, into = c(&quot;brans&quot;, &quot;tur&quot;, &quot;d&quot;), &quot;(.*)(Yabancı Uyruklu|Genel)(.*)&quot;) %&gt;%
+  mutate(
+    d = str_trim(d),
+    brans = str_trim(brans)
+  ) %&gt;%
+  separate(d, into = c(&quot;kontenjan&quot;, &quot;yerlesen&quot;, &quot;bos&quot;, &quot;min&quot;, &quot;max&quot;), sep = &quot; &quot;) %&gt;%
+  separate(kurum, into = c(&quot;number&quot;, &quot;kurum&quot;), sep = &quot;^\\d+\\s&quot;) %&gt;%
+  select(-number) %&gt;%
+  mutate(
+    kurum = str_replace_all(kurum, &quot;Sağlık Bilimleri Üniversitesi&quot;, &quot;SBÜ&quot;),
+    kurum = str_replace_all(kurum, &quot;Eğitim ve Araştırma Hastanesi&quot;, &quot;EAH&quot;),
+    kurum = str_replace_all(kurum, &quot;Tıp Fakültesi&quot;, &quot;Tıp F&quot;),
+    kurum = str_remove_all(kurum, &quot; \\(ANKARA\\)&quot;),
+    kurum = str_remove_all(kurum, &quot; \\(İSTANBUL\\)&quot;),
+    kurum = str_remove_all(kurum, &quot;Prof. Dr. Mazhar Osman&quot;),
+    kurum = str_remove_all(kurum, &quot;Tayfur Ata Sökmen &quot;)
+  ) %&gt;%
+  mutate(across(min:max, ~ if_else(. == &quot;--&quot;, NA_character_, .))) %&gt;%
+  mutate(across(min:max, ~ str_replace_all(., &quot;,&quot;, &quot;.&quot;))) %&gt;%
+  mutate(across(kontenjan:max, ~ as.numeric(.))) %&gt;%
+  mutate(across(min:max, ~ round(., 2))) %&gt;%
+  mutate(
+    min = if_else(is.na(min), 0, min),
+    doluluk = 100 * round(yerlesen / kontenjan, 2),
+    kurum_title = if_else(!str_detect(kurum, &quot;SBÜ|EAH&quot;), str_to_title(kurum), kurum),
+    equal_kucuk_puan = if_else(min != max, min, NA_real_)
+  ) %&gt;%
+  filter(
+    brans != &quot;ASKERİ SAĞLIK HİZMETLERİ&quot;,
+    tur == &quot;Genel&quot;
+  ) %&gt;%
+  mutate(
+    brans_title = str_to_title(brans),
+    brans_title = str_replace_all(brans_title, &quot;i̇&quot;, &quot;i&quot;),
+    brans_title = str_replace_all(brans_title, &quot;Hastaliklari&quot;, &quot;Hastalıkları&quot;),
+    brans_title = str_replace_all(brans_title, &quot;Kadin&quot;, &quot;Kadın&quot;),
+    brans_title = str_replace_all(brans_title, &quot;Sağliği&quot;, &quot;Sağlığı&quot;),
+    brans_title = str_replace_all(brans_title, &quot;Ve &quot;, &quot;ve &quot;),
+    brans_title = str_replace_all(brans_title, &quot; Tip&quot;, &quot; Tıp&quot;),
+    brans_title = str_replace_all(brans_title, &quot;Tibbi &quot;, &quot;Tıbbi &quot;)
+  ) %&gt;%
+  filter(!str_detect(kurum, &quot;Dr. Sami Ulus&quot;)) %&gt;%               # Empty value, causes error in function
+  filter(!str_detect(kurum, &quot;Jandarma Genel Komutanlığı&quot;))      # Empty value, causes error in function</code></pre>
+</div>
+<div id="define-random-colors-for-each-institute-darker-color-and-its-lighter-version" class="section level3">
+<h3>Define random colors for each institute (darker color and its lighter version)</h3>
+<pre class="r"><code>my_grays &lt;- c(&quot;#C0C0C0&quot;, &quot;#909090&quot;, &quot;#696969&quot;, &quot;#525252&quot;)
+grid_color &lt;- c(&quot;#E8E8E8&quot;)
+empty_color &lt;- c(&quot;#A12123&quot;)
+some_empty_color &lt;- c(&quot;#919498&quot;)
+ktu_color &lt;- c(&quot;#003B64&quot;, &quot;#1B71AC&quot;) # I only know the KTU&#39;s official colors. If any database exist, would be great.
+
+
+# Function to generate a random color in hex format
+generate_random_hex_color &lt;- function(seed) {
+  # Set seed for reproducibility
+  set.seed(seed)
+
+  # Generate random values for red, green, and blue components
+  red &lt;- sprintf(&quot;%02X&quot;, sample(0:255, 1))
+  green &lt;- sprintf(&quot;%02X&quot;, sample(0:255, 1))
+  blue &lt;- sprintf(&quot;%02X&quot;, sample(0:255, 1))
+
+  # Combine components into a hex color code
+  hex_color &lt;- paste0(&quot;#&quot;, red, green, blue)
+
+  return(hex_color)
+}
+
+
+# Function to generate dark and light versions of a color
+generate_dark_light_colors &lt;- function(base_color, dark_factor = 0.7, light_factor = 1.3) {
+  # Convert the hexadecimal color to RGB values
+  base_rgb &lt;- col2rgb(base_color)
+
+  # Calculate dark and light variations
+  dark_rgb &lt;- round(base_rgb * dark_factor)
+  light_rgb &lt;- round(base_rgb * light_factor)
+
+  # Ensure values are within valid RGB range (0-255)
+  dark_rgb &lt;- pmax(0, pmin(255, dark_rgb))
+  light_rgb &lt;- pmax(0, pmin(255, light_rgb))
+
+  # Convert RGB values back to hexadecimal
+  dark_color &lt;- rgb(dark_rgb[1], dark_rgb[2], dark_rgb[3], maxColorValue = 255)
+  light_color &lt;- rgb(light_rgb[1], light_rgb[2], light_rgb[3], maxColorValue = 255)
+
+  return(list(dark_color = dark_color, light_color = light_color))
+}
+
+
+## Create color list
+
+unique_kurums &lt;- unique(kadro_tus_init$kurum)           # List of all institutes
+
+num_colors &lt;- length(unique_kurums)                     # required number of base colors
+base_colors &lt;- replicate(num_colors, generate_random_hex_color(seed = NULL), simplify = FALSE)
+
+my_color_pallette &lt;- map(base_colors, ~ {
+  generated_colors &lt;- generate_dark_light_colors(.x)
+
+  return(list(
+    random_base_color = .x,
+    dark_color = generated_colors$dark_color,
+    light_color = generated_colors$light_color
+  ))
+})
+
+
+## Create institute df with color list
+
+color_for_kurums &lt;- list()
+
+for (i in seq_along(my_color_pallette)) {
+  kurum &lt;- as_tibble(unique_kurums)[[1]][[i]]
+  random_base_color &lt;- my_color_pallette[[i]]$random_base_color
+  dark_color &lt;- my_color_pallette[[i]]$dark_color
+  light_color &lt;- my_color_pallette[[i]]$light_color
+
+  single_kurum_df &lt;- data.frame(kurum, random_base_color, dark_color, light_color)
+
+  # Append the current data frame to the result list
+  color_for_kurums[[i]] &lt;- single_kurum_df
+}
+
+
+## Bind list and Change only KTU colors
+color_for_kurums_df &lt;- list_rbind(color_for_kurums) %&gt;%
+  mutate(
+    random_base_color = if_else(kurum == &quot;Karadeniz Teknik Üniversitesi Tıp F&quot;, ktu_color[1], random_base_color),
+    dark_color = if_else(kurum == &quot;Karadeniz Teknik Üniversitesi Tıp F&quot;, ktu_color[1], dark_color),
+    light_color = if_else(kurum == &quot;Karadeniz Teknik Üniversitesi Tıp F&quot;, ktu_color[2], light_color)
+  )</code></pre>
+</div>
+</div>
+<div id="divide-dataset-into-three-part-for-üniversite---eah---sehir-hastanesi" class="section level2">
+<h2>Divide dataset into three part for Üniversite - EAH - Sehir Hastanesi</h2>
+<pre class="r"><code>## To remove some errors in ÖSYM dataset
+kadro_tus_init_colored &lt;- kadro_tus_init %&gt;% 
+    group_by(brans, kurum) %&gt;% 
+    arrange(desc(kontenjan)) %&gt;%
+    slice(1) %&gt;%
+    ungroup() %&gt;% 
+  left_join(color_for_kurums_df, by = &quot;kurum&quot;)
+
+## Define sub datasets for Top, EAH, Şehir Hastanesi
+
+data_uni &lt;- kadro_tus_init_colored %&gt;% 
+  filter(str_detect(kurum, &quot;Tıp F&quot;))
+
+data_eah &lt;- kadro_tus_init_colored %&gt;% 
+  filter(str_detect(kurum, &quot; EAH&quot;))
+
+data_sehir &lt;- kadro_tus_init_colored %&gt;% 
+  filter(str_detect(kurum, &quot;Şehir Hastanesi&quot;))</code></pre>
+</div>
+<div id="custom-function-to-plot-main-plot" class="section level2">
+<h2>Custom FUNCTION to plot (Main plot)</h2>
+<pre class="r"><code>func_tus_institute &lt;- function(selected_dataset, my_institute) {
+  
+  clean_institute_2023 &lt;- selected_dataset %&gt;%
+    filter(
+      kurum == {{ my_institute }}
+    ) %&gt;%
+    group_by(brans) %&gt;%
+    arrange(desc(kontenjan)) %&gt;%
+    slice(1) %&gt;%
+    ungroup()
+
+  minmax_branch &lt;- clean_institute_2023 %&gt;%
+    filter(min != 0) %&gt;%
+    summarise(
+      min = min(min, na.rm = TRUE),
+      max = max(max, na.rm = TRUE)
+    )
+
+  doluluk_branch &lt;- clean_institute_2023 %&gt;%
+    summarise(
+      sum_kontenjan = sum(kontenjan, na.rm = TRUE),
+      sum_yerlesen = sum(yerlesen, na.rm = TRUE)
+    ) %&gt;%
+    mutate(doluluk = paste0(&quot;%&quot;, round(100 * sum_yerlesen / sum_kontenjan, 1)))
+
+
+  lowest &lt;- clean_institute_2023 %&gt;%
+    filter(min != 0) %&gt;%
+    arrange(min) %&gt;%
+    slice_head() %&gt;%
+    pull(brans_title)
+
+  highest &lt;- clean_institute_2023 %&gt;%
+    filter(min != 0) %&gt;%
+    arrange(desc(max)) %&gt;%
+    slice_head() %&gt;%
+    pull(brans_title)
+
+
+  
+  my_light_color &lt;- clean_institute_2023 %&gt;%
+    slice_head() %&gt;%
+    pull(light_color)
+  my_dark_color &lt;- clean_institute_2023 %&gt;%
+    slice_head() %&gt;%
+    pull(dark_color)
+
+
+  my_title &lt;- glue:::glue(&quot;TUS 2023/II - &lt;span style=&#39;color:{my_dark_color};&#39;&gt;{my_institute}&lt;/span&gt;&quot;)
+  my_subtitle &lt;- glue::glue(&quot;Doluluk: {doluluk_branch$doluluk} ({doluluk_branch$sum_yerlesen}/{doluluk_branch$sum_kontenjan})&lt;br&gt;&lt;br&gt; 
+                            En yüksek: **{highest}**&lt;br&gt;&quot;)
+  my_caption &lt;- glue::glue(&quot;&lt;i style=&#39;color:{my_dark_color}&#39;&gt;Ana Renk&lt;/i&gt;: Kadrolar tam dolu&lt;br&gt;kaynak: ÖSYM&lt;br&gt;@AliGunerMD&quot;)
+
+
+  institute_plot &lt;- clean_institute_2023 %&gt;%
+    # ggplot(aes(kontenjan, yerlesen)) +
+    # geom_point()
+    mutate(
+      color = case_when(
+        doluluk == 100 ~ my_dark_color,
+        doluluk == 0 ~ empty_color,
+        TRUE ~ some_empty_color
+      ),
+      name = glue(&quot;&lt;i style=&#39;color:{color}&#39;&gt;{brans_title}&lt;/i&gt; ({yerlesen}\\/{kontenjan})&quot;),
+      mod_min = if_else(yerlesen == 0, -kontenjan, min + 100),
+      name = fct_reorder(name, mod_min)
+    ) %&gt;%
+    ggplot(aes(x = min, y = name, fill = color)) +
+    geom_segment(aes(x = min, xend = max, y = name, yend = name), color = my_grays[3]) +
+    geom_point(aes(x = min, y = name), color = ifelse(clean_institute_2023$doluluk == 100, my_light_color, my_grays[1]), size = 2.5) +
+    geom_point(aes(x = max, y = name), color = ifelse(clean_institute_2023$doluluk == 100, my_dark_color, my_grays[2]), size = 3.5) +
+    theme_light() +
+    scale_x_continuous(limits = c(minmax_branch$min - 2, minmax_branch$max + 2), breaks = seq(40, 80, 5)) +
+    geom_text(aes(x = max, y = name, label = max),
+      hjust = -.5, size = 3,
+      color = ifelse(clean_institute_2023$doluluk == 100, my_dark_color, my_grays[2])
+    ) +
+    geom_text(aes(x = equal_kucuk_puan, y = name, label = equal_kucuk_puan), hjust = 1.5, size = 2.5, color = ifelse(clean_institute_2023$doluluk == 100, my_dark_color, my_grays[2]), alpha = .7, check_overlap = TRUE) +
+    labs(
+      x = &quot;Puan&quot;,
+      y = &quot;&quot;,
+      title = my_title,
+      caption = my_caption,
+      subtitle = my_subtitle
+    ) +
+    theme(
+      panel.grid = element_line(color = grid_color),
+      panel.grid.minor.x = element_blank(),
+      # panel.grid.major.y = element_line(color = my_light_color, size = .1),
+      panel.border = element_blank(),
+      axis.text.y = element_markdown(face = &quot;bold&quot;),
+      legend.position = &quot;none&quot;,
+      plot.caption = element_markdown(),
+      plot.title.position = &quot;plot&quot;,
+      plot.title = element_markdown(hjust = .5, size = 14, face = &quot;bold&quot;),
+      plot.subtitle = element_markdown(hjust = .5)
+    )
+
+  # print(clean_institute_2023$kurum_title)       # used for debugging
+  # print(highest)                                # used for debugging
+  # print(lowest)                                 # used for debugging
+
+
+  return(institute_plot)
+}</code></pre>
+</div>
+<div id="custom-function-to-use-func_tus_institute-function-for-all-datasets-and-all-institutes-and-to-save" class="section level2">
+<h2>Custom FUNCTION to use func_tus_institute() function for all DATASETS and all Institutes (and to save)</h2>
+<pre class="r"><code>datasets &lt;- list(
+  data_sehir = data_sehir,
+  data_eah = data_eah,
+  data_uni = data_uni
+)
+
+# Create the main output folder
+# output_folder &lt;- &quot;content/post/2023-11-25-tus-23-2-uni/Outputs_2023_2&quot;    # to prepare
+output_folder &lt;- &quot;Outputs_2023_2&quot;                                           # to render
+
+dir.create(output_folder, showWarnings = FALSE)
+
+
+# Iterate over datasets
+for (dataset_name in names(datasets)) {
+  dataset &lt;- datasets[[dataset_name]]
+
+  # Create a folder for each dataset within the main output folder
+  dataset_folder &lt;- file.path(output_folder, dataset_name)
+  dir.create(dataset_folder, showWarnings = FALSE)
+
+  # Get unique values of &#39;kurum&#39; in the current dataset
+  institute_names &lt;- distinct(dataset, kurum) %&gt;%
+    pull(kurum)
+
+  # Iterate over unique &#39;kurum&#39; values
+  for (institute in institute_names) {
+    # Call the function for the current dataset and &#39;kurum&#39; value
+    institute_plot &lt;- func_tus_institute(selected_dataset = dataset, my_institute = institute)
+
+    # Save the plot in the &#39;kurum&#39; folder
+    plot_filename &lt;- file.path(paste0(dataset_folder, &quot;/&quot;, as.character(institute), &quot;.jpg&quot;))
+
+    # to select save height dynamically
+    no_brans &lt;- dataset %&gt;%
+      filter(kurum == {{ institute }}) %&gt;%
+      distinct(brans) %&gt;%
+      nrow()
+
+    my_height &lt;- case_when(
+      no_brans &gt;= 30 ~ 12,
+      no_brans &gt;= 20 &amp; no_brans &lt; 30 ~ 11,
+      no_brans &gt;= 10 &amp; no_brans &lt; 20 ~ 10,
+      no_brans &gt;= 5 &amp; no_brans &lt; 10 ~ 6,
+      no_brans &lt; 5 ~ 4,
+      TRUE ~ 11
+    )
+
+    # Save plot
+    ggsave(
+      file = plot_filename,
+      plot = institute_plot,
+      dpi = 300,
+      width = 9,
+      height = 11
+    )
+  }
+}</code></pre>
+</div>
