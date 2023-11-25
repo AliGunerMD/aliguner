@@ -314,7 +314,7 @@ data_sehir &lt;- kadro_tus_init_colored %&gt;%
 
   my_title &lt;- glue:::glue(&quot;TUS 2023/II - &lt;span style=&#39;color:{my_dark_color};&#39;&gt;{my_institute}&lt;/span&gt;&quot;)
   my_subtitle &lt;- glue::glue(&quot;Doluluk: {doluluk_branch$doluluk} ({doluluk_branch$sum_yerlesen}/{doluluk_branch$sum_kontenjan})&lt;br&gt;&lt;br&gt; 
-                            En yüksek: **{highest}**&lt;br&gt;&quot;)
+                            En yüksek: **{highest}** ({minmax_branch$max})&lt;br&gt;&quot;)
   my_caption &lt;- glue::glue(&quot;&lt;i style=&#39;color:{my_dark_color}&#39;&gt;Ana Renk&lt;/i&gt;: Kadrolar tam dolu&lt;br&gt;kaynak: ÖSYM&lt;br&gt;@AliGunerMD&quot;)
 
 

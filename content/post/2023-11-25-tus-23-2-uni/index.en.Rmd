@@ -351,7 +351,7 @@ func_tus_institute <- function(selected_dataset, my_institute) {
 
   my_title <- glue:::glue("TUS 2023/II - <span style='color:{my_dark_color};'>{my_institute}</span>")
   my_subtitle <- glue::glue("Doluluk: {doluluk_branch$doluluk} ({doluluk_branch$sum_yerlesen}/{doluluk_branch$sum_kontenjan})<br><br> 
-                            En yüksek: **{highest}**<br>")
+                            En yüksek: **{highest}** ({minmax_branch$max})<br>")
   my_caption <- glue::glue("<i style='color:{my_dark_color}'>Ana Renk</i>: Kadrolar tam dolu<br>kaynak: ÖSYM<br>@AliGunerMD")
 
 
