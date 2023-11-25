@@ -53,7 +53,7 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, out.width =
 
 Kurum spesifik sonuçları görmek için;   
 
-Üniversiteler için: [Üniversiteler](https://github.com/AliGunerMD/aliguner/blob/main/content/post/2023-11-25-tus-23-2/Outputs_2023_2-uni/data_uni),    
+Üniversiteler için: [Üniversiteler](https://github.com/AliGunerMD/aliguner/blob/main/content/post/2023-11-25-tus-23-2-uni/Outputs_2023_2/data_uni),    
 Eğitim ve Araştırma Hastaneleri için: [Eğitim ve Araştırma Hastaneleri](https://github.com/AliGunerMD/aliguner/blob/main/content/post/2023-11-25-tus-23-2-uni/Outputs_2023_2/data_eah),  
 Şehir Hastaneleri için: [Şehir Hastaneleri](https://github.com/AliGunerMD/aliguner/blob/main/content/post/2023-11-25-tus-23-2-uni/Outputs_2023_2/data_sehir)  
 sayfalarına gidebilirsiniz.
