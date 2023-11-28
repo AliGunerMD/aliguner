@@ -26,6 +26,7 @@ education:
 email: draliguner@yahoo.com
 highlight_name: true
 interests:
+- R
 - Esophageal and Gastric Cancer
 - Anything related to Stomach
 - Regression/Survival analysis
