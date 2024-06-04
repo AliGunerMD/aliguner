@@ -1,0 +1,262 @@
+---
+title: "TUS 2023 II.Dönem Sonuçları"
+date: '2023-11-18T12:13:27+03:00'
+subtitle: 'Branşlara göre MIN-MAX puanlar'
+summary: 'TUS 2023 II.Dönem - Branşlara göre MIN-MAX puanlar'
+authors: [admin]
+slug: tus-2023-2
+categories:
+  - AcadeMD
+tags:
+  - OSYM
+  - TUS
+lastmod: '2023-11-18T21:27:27+03:00'
+featured: yes
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: 
+  - AcadeMD
+links:
+ - icon: link
+   icon_pack: fas
+   name: "ÖSYM"
+   url: "https://dokuman.osym.gov.tr/pdfdokuman/2023/TUSDONEM-2/TERCIH/minmax17112023.pdf"
+ - icon: github
+   icon_pack: fab
+   name: GitHub
+   url: "https://github.com/AliGunerMD/aliguner/blob/main/content/post/2023-11-18-tus-23-2/index.en.Rmd"
+ - icon: sistrix
+   icon_pack: fab
+   name: Outputs
+   url: "https://github.com/AliGunerMD/aliguner/blob/main/content/post/2023-11-18-tus-23-2/Outputs_2023_2"
+url_pdf: ""
+url_code: ""
+url_dataset: ""
+url_project: ""
+url_slides: ""
+url_source: ""
+url_video: ""
+editor_options: 
+  chunk_output_type: console
+---
+
+
+```{r setup, include=FALSE}
+
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, out.width = "80%")
+
+```
+
+ 
+Branş-spesific sonuçları görmek için [Outputs](https://github.com/AliGunerMD/aliguner/blob/main/content/post/2023-11-18-tus-23-2/Outputs_2023_2) sayfasına;   
+Merak edenler kodları görmek isterse de [GitHub](https://github.com/AliGunerMD/aliguner/blob/main/content/post/2023-11-18-tus-23-2/index.en.Rmd) sayfasına gidebilirsiniz.  
+
+<br>
+<br>
+Veriler ÖSYM sayfasından .pdf dosyası olarak alınıp, R yazılımı ile düzenlenmiştir.  
+Orjinal veri dosyasında Genel/Yabancı Uyruklu ayrımı bazı merkezler için hatalı yazılmıştır. Daha yüksek kontenjanı olan satırın doğru olduğu varsayılarak diğer satır dışlanmıştır.  
+
+<br>
+Veri seti ile ilgili farklı bir değerlendirme isterseniz [Twitter](https://twitter.com/AliGunerMD) üzerinden ya da [iletişim formu](https://www.aliguner.com/) ile ulaşabilirsiniz. Örn: Kurum spesific veriler.  
+
+<br>
+Yabancı Uyruklu kontenjanları verilere dahil edilmemiştir.  
+Onlar için de ayrı bir figüre hazırlanabilir.  
+
+<br>
+Verilerde hata varsa muhtemel ÖSYM pdf dosyası ya da kod kaynaklıdır.  
+
+
+## R Codes
+
+### Import libraries
+
+```{r import library}
+library(tidyverse)
+library(pdftools)
+library(glue)
+library(ggtext)
+
+
+my_greens <- c("#13bf13", "#009900")
+my_grays <- c("#C0C0C0", "#909090", "#696969")
+my_reds <- c("#ff6666")
+my_white <- c("#E8E8E8")
+
+```
+
+
+
+### Import dataset from [ÖSYM link](https://dokuman.osym.gov.tr/pdfdokuman/2023/TUSDONEM-2/TERCIH/minmax17112023.pdf)
+
+```{r}
+
+kadro_tus <- pdftools::pdf_text(pdf = here::here("datasets", "minmax17112023.pdf")) %>%
+  as_tibble()
+
+
+```
+
+
+### Clean dataset
+```{r}
+
+kadro_tus_init <- kadro_tus %>%
+  separate_rows(value, sep = "\n") %>%
+  mutate(value = str_squish(value)) %>%
+  filter(value != "") %>%
+  mutate(value = str_remove_all(value, " dipnot \\d")) %>%
+  filter(!str_detect(value, "Kontenjan|2023-TUS")) %>%
+  extract(value, into = c("kurum", "b"), "(.*)/(.*)") %>%
+  extract(b, into = c("brans", "tur", "d"), "(.*)(Yabancı Uyruklu|Genel)(.*)") %>%
+  mutate(
+    d = str_trim(d),
+    brans = str_trim(brans)
+  ) %>%
+  separate(d, into = c("kontenjan", "yerlesen", "bos", "min", "max"), sep = " ") %>%
+  separate(kurum, into = c("number", "kurum"), sep = "^\\d+\\s") %>%
+  select(-number) %>%
+  mutate(
+    kurum = str_replace_all(kurum, "Sağlık Bilimleri Üniversitesi", "SBÜ"),
+    kurum = str_replace_all(kurum, "Eğitim ve Araştırma Hastanesi", "EAH"),
+    kurum = str_replace_all(kurum, "Tıp Fakültesi", "Tıp F."),
+    kurum = str_remove_all(kurum, " \\(ANKARA\\)")
+  ) %>%
+  mutate(across(min:max, ~ if_else(. == "--", NA_character_, .))) %>%
+  mutate(across(min:max, ~ str_replace_all(., ",", "."))) %>%
+  mutate(across(kontenjan:max, ~ as.numeric(.))) %>%
+  mutate(across(min:max, ~ round(., 2)))
+
+
+clean_tus_2023 <- kadro_tus_init %>%
+  mutate(
+    min = if_else(is.na(min), 0, min),
+    doluluk = 100 * round(yerlesen / kontenjan, 2),
+    kurum_title = if_else(!str_detect(kurum, "SBÜ|EAH"), str_to_title(kurum), kurum),
+    equal_kucuk_puan = if_else(min != max, min, NA_real_),
+    kurum_title = str_remove_all(kurum_title, "Tayfur Ata Sökmen ")
+  )
+
+```
+
+### Define a function to plot for a specific BRANCH 
+
+```{r}
+
+func_tus <- function(my_branch) {
+  clean_branch_2023 <- clean_tus_2023 %>%
+    filter(brans != "ASKERİ SAĞLIK HİZMETLERİ") %>% # There is no position
+    filter(
+      tur == "Genel",   # There are some errors in yabancı uyruklu-genel data in the dataset
+      brans == {{ my_branch }}
+    ) %>%
+    group_by(kurum) %>% # because of the errors, I chose only higher number of position as "GENEL" and ignored the other
+    arrange(desc(kontenjan)) %>%
+    slice(1) %>%
+    ungroup()
+
+  minmax_branch <- clean_branch_2023 %>%
+    filter(min != 0) %>%
+    summarise(
+      min = min(min, na.rm = TRUE),
+      max = max(max, na.rm = TRUE)
+    )
+
+  doluluk_branch <- clean_branch_2023 %>%
+    summarise(
+      sum_kontenjan = sum(kontenjan, na.rm = TRUE),
+      sum_yerlesen = sum(yerlesen, na.rm = TRUE)
+    ) %>%
+    mutate(doluluk = paste0("%", round(100 * sum_yerlesen / sum_kontenjan, 1)))
+
+  lowest <- clean_branch_2023 %>%
+    filter(min != 0) %>%
+    arrange(min) %>%
+    slice_head() %>%
+    pull(kurum_title)
+
+  highest <- clean_branch_2023 %>%
+    filter(min != 0) %>%
+    arrange(desc(max)) %>%
+    slice_head() %>%
+    pull(kurum_title)
+
+  my_subtitle <- glue::glue("Doluluk: {doluluk_branch$doluluk} ({doluluk_branch$sum_yerlesen}/{doluluk_branch$sum_kontenjan})<br><br>
+                          En yüksek: **{highest}** ({minmax_branch$max})<br><br>
+                          En düşük: {lowest} ({minmax_branch$min})")
+
+
+  
+
+  branch_plot <- clean_branch_2023 %>%
+    mutate(
+      color = case_when(
+        doluluk == 100 ~ my_greens[2],
+        doluluk == 0 ~ my_reds[1],
+        TRUE ~ my_grays[2]
+      ),
+      name = glue::glue("<i style='color:{color}'>{kurum_title}</i> ({yerlesen}\\/{kontenjan})"),
+      name = fct_reorder(name, min)
+    ) %>%
+    ggplot(aes(x = min, y = name, fill = color)) +
+    geom_segment(aes(x = min, xend = max, y = name, yend = name), color = my_grays[3]) +
+    geom_point(aes(x = min, y = name), color = ifelse(clean_branch_2023$doluluk == 100, my_greens[1], my_grays[1]), size = 2.5) +
+    geom_point(aes(x = max, y = name), color = ifelse(clean_branch_2023$doluluk == 100, my_greens[2], my_grays[2]), size = 3.5) +
+    theme_light() +
+    scale_x_continuous(limits = c(minmax_branch$min - 2, minmax_branch$max + 2), breaks = seq(45, 80, 5)) +
+    geom_text(aes(x = max, y = name, label = max),
+      hjust = -.5, size = 3,
+      color = ifelse(clean_branch_2023$doluluk == 100, my_greens[2], my_grays[2])
+    ) +
+    geom_text(aes(x = equal_kucuk_puan, y = name, label = equal_kucuk_puan), hjust = 1.5, size = 2.5, color = ifelse(clean_branch_2023$doluluk == 100, my_greens[1], my_grays[2]), check_overlap = TRUE) +
+    labs(
+      title = glue:::glue("TUS 2023/II, <span style='color: #95568F;'>{my_branch}</span>"),
+      subtitle = my_subtitle,
+      x = "Puan",
+      y = "",
+      caption = "<i style='color:#009900'>Yeşil</i> : Kadrolar tam dolu<br><i style='color:#ff6666'>Kırmızı</i>: Kadrolar tam boş<br>kaynak: ÖSYM<br>by @AliGunerMD"
+    ) +
+    theme(
+      panel.grid = element_line(color = my_white[1]),
+      panel.grid.minor.x = element_blank(),
+      panel.border = element_blank(),
+      axis.text.y = element_markdown(),
+      legend.position = "none",
+      plot.caption = element_markdown(),
+      plot.title.position = "plot",
+      plot.title = element_markdown(hjust = .5, size = 14, face = "bold"),
+      plot.subtitle = element_markdown(hjust = .5)
+    )
+
+  return(branch_plot)
+  
+}
+```
+
+### use defined function for the BRANCH_NAMES vector
+```{r}
+
+# branch_names <- unique(clean_tus_2023$brans)
+
+branch_names <- clean_tus_2023 %>%
+  filter(brans != "ASKERİ SAĞLIK HİZMETLERİ") %>%
+  distinct(brans) %>%
+  pull(brans)
+
+save_ggplot_for_branch <- function(branch_name) {
+  branch_plot <- func_tus(my_branch = branch_name)
+
+  ggsave(branch_plot,
+    file = file.path("Outputs_2023_2", paste0(branch_name, ".jpg")),
+    dpi = 300,
+    width = 9,
+    height = 11
+  )
+}
+
+purrr::walk(branch_names, save_ggplot_for_branch)
+
+```
+
