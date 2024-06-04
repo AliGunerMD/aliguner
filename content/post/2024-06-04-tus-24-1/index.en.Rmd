@@ -253,7 +253,7 @@ save_ggplot_for_branch <- function(branch_name) {
   branch_plot <- func_tus(my_branch = branch_name)
 
   ggsave(branch_plot,
-    file = file.path("content", "post", "2024-06-04-tus-24-1", "Outputs_2024_1", paste0(branch_name, ".jpg")),
+    file = file.path("Outputs_2024_1", paste0(branch_name, ".jpg")),
     dpi = 300,
     width = 9,
     height = 12
