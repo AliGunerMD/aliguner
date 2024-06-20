@@ -84,6 +84,7 @@ my_greens <- c("#13bf13", "#009900")
 my_grays <- c("#C0C0C0", "#909090", "#696969")
 my_reds <- c("#ff6666")
 my_white <- c("#E8E8E8")
+my_black <- c("#000000")
 
 ```
 
@@ -265,3 +266,135 @@ purrr::walk(branch_names, save_ggplot_for_branch)
 ```
 
 <!-- DO NOT FORGET TO KNIT!!!! -->
+
+
+
+```{r, eval=FALSE}
+
+#### To prepare overall BRANCH based image
+
+overall <- clean_tus_2024 |> 
+  filter(tur == "Genel") |> 
+  filter(!is.na(brans)) |>
+  mutate(min = if_else(min == 0, NA_integer_, min)) |> 
+    group_by(kurum, brans) %>% # because of the errors, I chose only higher number of position as "GENEL" and ignored the other
+    arrange(desc(kontenjan)) %>%
+    slice(1) %>%
+    ungroup() |> 
+  summarise(yerl_all = sum(yerlesen, na.rm = TRUE),
+            kont_all = sum(kontenjan, na.rm = TRUE),
+            min_all = min(min, na.rm = TRUE),
+            max_all = max(max, na.rm = TRUE),
+            .by = brans) |> 
+  mutate(max_all = if_else(yerl_all == 0, 0, max_all),
+         min_all = if_else(yerl_all == 0, 0, min_all),
+         doluluk = round(yerl_all * 100 / kont_all, 1)) |> 
+  mutate(label = paste0(brans, " (", yerl_all, "/",  kont_all, " - %", doluluk ,")"))
+
+
+  minmax_branch_overall <- overall %>%
+    filter(min_all != 0) %>%
+    summarise(
+      min = min(min_all, na.rm = TRUE),
+      max = max(max_all, na.rm = TRUE)
+    )
+  
+empty_branches <- overall |> 
+  filter(yerl_all == 0) |> 
+  pull(brans)
+
+
+branch_plot_overall <- overall |> 
+  mutate(
+    # brans_corr = str_to_title(brans),
+    color = case_when(
+        doluluk == 100 ~ my_greens[1],
+        doluluk == 0 ~ my_reds[1],
+        doluluk >= 90 & doluluk < 100 ~ RforMD:::ag_colors_scale("blue", 12)[12],
+        doluluk >= 70 & doluluk < 90 ~ RforMD:::ag_colors_scale("blue", 12)[8],
+        doluluk >= 60 & doluluk < 70 ~ RforMD:::ag_colors_scale("blue", 12)[5],
+        doluluk > 0 & doluluk < 60 ~ "orange",
+        TRUE ~ "black"
+      ),
+    label = glue::glue("<i style='color:{color}'>{label}</i>"),
+      label = fct_reorder(label, min_all)) |> 
+   ggplot(aes(x = min_all, y = label, color = color)) +
+    geom_segment(aes(x = min_all, xend = max_all, y = label, yend = label), color = my_grays[3]) +
+    geom_point(aes(x = min_all, y = label), size = 2.5, color =  my_grays[2], ) +
+    geom_point(aes(x = max_all, y = label), size = 3.5, color =  my_greens[2], ) +
+    theme_light() +
+scale_x_continuous(limits = c(minmax_branch_overall$min - 3, minmax_branch_overall$max + 2), breaks = seq(45, 85, 5)) +
+    geom_text(aes(x = max_all, y = label, label = max_all),
+      hjust = -.5, size = 3,
+       color = my_greens[2]
+      # color = ifelse(overall$doluluk == 100, my_greens[2], my_grays[2])
+    )  + 
+    geom_text(aes(x = min_all, y = label, label = min_all), hjust = 1.5, size = 3,
+              color =  my_grays[3], 
+              check_overlap = TRUE) +
+  
+ labs(
+      title = "TUS 2024/I.Dönem Branşların Min-Max puanları<br>",
+      subtitle = "(Minimum puana göre sıralanmıştır)",
+      x = "\nPuan",
+      y = "",
+      caption = "<i style='color:#13bf13'>Yeşil</i> : Kadrolar tam dolu<br>kaynak: ÖSYM<br>by @AliGunerMD"
+    ) +
+  theme(
+      panel.grid = element_line(color = my_white[1]),
+      panel.grid.minor.x = element_blank(),
+      panel.border = element_blank(),
+      axis.text.y = element_markdown(),
+      legend.position = "none",
+      plot.caption = element_markdown(),
+      plot.title.position = "plot",
+      plot.title = element_markdown(hjust = .5, size = 14, face = "bold"),
+      plot.subtitle = element_markdown(hjust = .5)
+    ) 
+
+
+
+ggsave(branch_plot_overall,
+    file = file.path("branch_plot_overall.jpg"),
+    dpi = 300,
+    width = 9,
+    height = 12
+  )
+
+
+
+```
+
+
+```{r, eval=false}
+
+clean_tus_2024 |> 
+  filter(tur == "Genel") |> 
+  filter(!is.na(brans)) |>
+  mutate(min = if_else(yerlesen == 0, 45, min),
+         max = if_else(yerlesen == 0, 45, max)) |> 
+  # mutate(min = if_else(min == 0, NA_integer_, min)) |> 
+  select(kurum, brans, min, max) |> 
+  summarise(mean_min = mean(min, na.rm = TRUE),
+            mean_max = mean(max, na.rm = TRUE),
+            .by = c(brans)) |> View()
+  # mutate((mean_min + mean_max)/2)
+  arrange(desc(mean_min))
+
+
+clean_tus_2024 |> 
+  filter(tur == "Genel") |> 
+  filter(brans == "SPOR HEKİMLİĞİ")
+clean_tus_2024 |> 
+  filter(tur == "Genel") |> 
+  filter(brans == "FİZYOLOJİ") |> 
+  summarise(mean(min))
+
+clean_tus_2024 |> 
+  filter(tur == "Genel") |> 
+  filter(str_detect(brans, "EKOLOJİ")) |> 
+  summarise(mean(min))
+
+
+```
+
