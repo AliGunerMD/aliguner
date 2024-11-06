@@ -1,0 +1,242 @@
+---
+title: "TUS 2024 II.Dönem Sonuçları"
+date: '2024-11-06T19:13:27+03:00'
+subtitle: 'Branşlara göre MIN-MAX puanlar'
+summary: 'TUS 2024 II.Dönem - Branşlara göre MIN-MAX puanlar'
+authors: [admin]
+slug: tus-2024-1
+categories:
+  - AcadeMD
+tags:
+  - OSYM
+  - TUS
+lastmod: '2024-11-06T21:27:27+03:00'
+featured: yes
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: 
+  - AcadeMD
+links:
+ - icon: link
+   icon_pack: fas
+   name: "ÖSYM"
+   url: "https://dokuman.osym.gov.tr/pdfdokuman/2024/TUSDONEM-2/TERCIH/minmax_yd05112024.pdf"
+ - icon: github
+   icon_pack: fab
+   name: GitHub
+   url: "https://github.com/AliGunerMD/aliguner/blob/main/content/post/2024-11-06-tus-24-2/index.en.Rmd"
+ - icon: sistrix
+   icon_pack: fab
+   name: Outputs
+   url: "https://github.com/AliGunerMD/aliguner/blob/main/content/post/2024-11-06-tus-24-2/Outputs_2024_2"
+url_pdf: ""
+url_code: ""
+url_dataset: ""
+url_project: ""
+url_slides: ""
+url_source: ""
+url_video: ""
+editor_options: 
+  chunk_output_type: console
+---
+
+
+
+<p>Branş-spesific sonuçları görmek için <a href="https://github.com/AliGunerMD/aliguner/blob/main/content/post/2024-11-06-tus-24-2/Outputs_2024_2">Outputs</a> sayfasına;<br />
+Merak edenler kodları görmek isterse de <a href="https://github.com/AliGunerMD/aliguner/blob/main/content/post/2024-11-06-tus-24-2/index.en.Rmd">GitHub</a> sayfasına gidebilirsiniz.</p>
+<p><br>
+<br>
+Veriler ÖSYM sayfasından .pdf dosyası olarak alınıp, R yazılımı ile düzenlenmiştir.</p>
+<p><br>
+Veri seti ile ilgili farklı bir değerlendirme isterseniz <a href="https://twitter.com/AliGunerMD">Twitter</a> üzerinden ya da <a href="https://www.aliguner.com/">iletişim formu</a> ile ulaşabilirsiniz. Örn: Kurum spesific veriler.</p>
+<p><br>
+Yabancı Uyruklu kontenjanları verilere dahil edilmemiştir.<br />
+Onlar için de ayrı bir figure hazırlanabilir.</p>
+<p><br>
+Verilerde hata varsa muhtemel ÖSYM pdf dosyası ya da kod kaynaklıdır. Tek tek inceleme şansım olmuyor.</p>
+<div id="r-codes" class="section level2">
+<h2>R Codes</h2>
+<div id="import-libraries" class="section level3">
+<h3>Import libraries</h3>
+<pre class="r"><code>library(tidyverse)
+library(pdftools)
+library(glue)
+library(ggtext)
+
+
+my_greens &lt;- c(&quot;#13bf13&quot;, &quot;#009900&quot;)
+my_grays &lt;- c(&quot;#C0C0C0&quot;, &quot;#909090&quot;, &quot;#696969&quot;)
+my_reds &lt;- c(&quot;#ff6666&quot;)
+my_white &lt;- c(&quot;#E8E8E8&quot;)
+my_black &lt;- c(&quot;#000000&quot;)</code></pre>
+</div>
+<div id="import-dataset-from-ösym-link" class="section level3">
+<h3>Import dataset from <a href="https://dokuman.osym.gov.tr/pdfdokuman/2024/TUSDONEM-2/TERCIH/minmax_yd05112024.pdf">ÖSYM link</a></h3>
+<pre class="r"><code># 
+# kadro_tus &lt;- pdftools::pdf_text(pdf = here::here(&quot;datasets&quot;, &quot;minmax17112023.pdf&quot;)) %&gt;%
+#   as_tibble()
+# 
+# kadro_tus &lt;- pdftools::pdf_text(pdf = here::here(&quot;datasets&quot;, &quot;minmax_td03062024.pdf&quot;)) %&gt;%
+#   as_tibble()
+
+kadro_tus &lt;- pdftools::pdf_text(pdf = here::here(&quot;datasets&quot;, &quot;minmax_yd05112024.pdf&quot;)) %&gt;%
+  as_tibble()</code></pre>
+</div>
+<div id="clean-dataset" class="section level3">
+<h3>Clean dataset</h3>
+<pre class="r"><code>kadro_tus_init &lt;- kadro_tus %&gt;%
+  separate_rows(value, sep = &quot;\n&quot;) %&gt;%
+  mutate(value = str_squish(value)) %&gt;%
+  filter(value != &quot;&quot;) %&gt;%
+  mutate(value = str_remove_all(value, &quot; dipnot \\d&quot;)) %&gt;%
+  filter(!str_detect(value, &quot;Kontenjan|2024-TUS&quot;)) %&gt;%
+  extract(value, into = c(&quot;kurum&quot;, &quot;b&quot;), &quot;(.*)/(.*)&quot;) %&gt;%
+  extract(b, into = c(&quot;brans&quot;, &quot;tur&quot;, &quot;d&quot;), &quot;(.*)(Yabancı Uyruklu|Genel)(.*)&quot;) %&gt;%
+  mutate(
+    d = str_trim(d),
+    brans = str_trim(brans)
+  ) %&gt;%
+  separate(d, into = c(&quot;kontenjan&quot;, &quot;yerlesen&quot;, &quot;bos&quot;, &quot;min&quot;, &quot;max&quot;), sep = &quot; &quot;) %&gt;%
+  separate(kurum, into = c(&quot;number&quot;, &quot;kurum&quot;), sep = &quot;^\\d+\\s&quot;) %&gt;%
+  select(-number) %&gt;%
+  mutate(
+    kurum = str_replace_all(kurum, &quot;Sağlık Bilimleri Üniversitesi&quot;, &quot;SBÜ&quot;),
+    kurum = str_replace_all(kurum, &quot;Eğitim ve Araştırma Hastanesi&quot;, &quot;EAH&quot;),
+    kurum = str_replace_all(kurum, &quot;Tıp Fakültesi&quot;, &quot;Tıp F.&quot;),
+    kurum = str_remove_all(kurum, &quot; \\(ANKARA\\)&quot;)
+  ) %&gt;%
+  mutate(across(min:max, ~ if_else(. == &quot;--&quot;, NA_character_, .))) %&gt;%
+  mutate(across(min:max, ~ str_replace_all(., &quot;,&quot;, &quot;.&quot;))) %&gt;%
+  mutate(across(kontenjan:max, ~ as.numeric(.))) %&gt;%
+  mutate(across(min:max, ~ round(., 2)))
+
+
+clean_tus_2024 &lt;- kadro_tus_init %&gt;%
+  mutate(
+    min = if_else(is.na(min), 0, min),
+    doluluk = 100 * round(yerlesen / kontenjan, 2),
+    kurum_title = if_else(!str_detect(kurum, &quot;SBÜ|EAH&quot;), str_to_title(kurum), kurum),
+    equal_kucuk_puan = if_else(min != max, min, NA_real_),
+    kurum_title = str_remove_all(kurum_title, &quot;Tayfur Ata Sökmen &quot;),
+    kurum_title = str_remove_all(kurum_title, &quot;Prof. Dr. &quot;)
+  )</code></pre>
+</div>
+<div id="define-a-function-to-plot-for-a-specific-branch" class="section level3">
+<h3>Define a function to plot for a specific BRANCH</h3>
+<pre class="r"><code>func_tus &lt;- function(my_branch) {
+  clean_branch_2024 &lt;- clean_tus_2024 %&gt;%
+    filter(brans != &quot;ASKERİ SAĞLIK HİZMETLERİ&quot;) %&gt;% # There is no position
+    filter(brans != &quot;HAVA VE UZAY HEKİMLİĞİ&quot;) %&gt;% # There is no position
+    filter(
+      tur == &quot;Genel&quot;,   # There are some errors in yabancı uyruklu-genel data in the dataset
+      brans == {{ my_branch }}
+    ) %&gt;%
+    group_by(kurum) %&gt;% # because of the errors, I chose only higher number of position as &quot;GENEL&quot; and ignored the other
+    arrange(desc(kontenjan)) %&gt;%
+    slice(1) %&gt;%
+    ungroup()
+
+  minmax_branch &lt;- clean_branch_2024 %&gt;%
+    filter(min != 0) %&gt;%
+    summarise(
+      min = min(min, na.rm = TRUE),
+      max = max(max, na.rm = TRUE)
+    )
+
+  doluluk_branch &lt;- clean_branch_2024 %&gt;%
+    summarise(
+      sum_kontenjan = sum(kontenjan, na.rm = TRUE),
+      sum_yerlesen = sum(yerlesen, na.rm = TRUE)
+    ) %&gt;%
+    mutate(doluluk = paste0(&quot;%&quot;, round(100 * sum_yerlesen / sum_kontenjan, 1)))
+
+  lowest &lt;- clean_branch_2024 %&gt;%
+    filter(min != 0) %&gt;%
+    arrange(min) %&gt;%
+    slice_head() %&gt;%
+    pull(kurum_title)
+
+  highest &lt;- clean_branch_2024 %&gt;%
+    filter(min != 0) %&gt;%
+    arrange(desc(max)) %&gt;%
+    slice_head() %&gt;%
+    pull(kurum_title)
+
+  my_subtitle &lt;- glue::glue(&quot;Doluluk: {doluluk_branch$doluluk} ({doluluk_branch$sum_yerlesen}/{doluluk_branch$sum_kontenjan})&lt;br&gt;&lt;br&gt;
+                          En yüksek: **{highest}** ({minmax_branch$max})&lt;br&gt;&lt;br&gt;
+                          En düşük: {lowest} ({minmax_branch$min})&quot;)
+
+
+  
+
+  branch_plot &lt;- clean_branch_2024 %&gt;%
+    mutate(
+      color = case_when(
+        doluluk == 100 ~ my_greens[2],
+        doluluk == 0 ~ my_reds[1],
+        TRUE ~ my_grays[2]
+      ),
+      name = glue::glue(&quot;&lt;i style=&#39;color:{color}&#39;&gt;{kurum_title}&lt;/i&gt; ({yerlesen}\\/{kontenjan})&quot;),
+      name = fct_reorder(name, min)
+    ) %&gt;%
+    ggplot(aes(x = min, y = name, fill = color)) +
+    geom_segment(aes(x = min, xend = max, y = name, yend = name), color = my_grays[3]) +
+    geom_point(aes(x = min, y = name), color = ifelse(clean_branch_2024$doluluk == 100, my_greens[1], my_grays[1]), size = 2.5) +
+    geom_point(aes(x = max, y = name), color = ifelse(clean_branch_2024$doluluk == 100, my_greens[2], my_grays[2]), size = 3.5) +
+    theme_light() +
+    scale_x_continuous(limits = c(minmax_branch$min - 2, minmax_branch$max + 2), breaks = seq(45, 80, 5)) +
+    geom_text(aes(x = max, y = name, label = max),
+      hjust = -.5, size = 3,
+      color = ifelse(clean_branch_2024$doluluk == 100, my_greens[2], my_grays[2])
+    ) +
+    geom_text(aes(x = equal_kucuk_puan, y = name, label = equal_kucuk_puan), hjust = 1.5, size = 2.5, color = ifelse(clean_branch_2024$doluluk == 100, my_greens[1], my_grays[2]), check_overlap = TRUE) +
+    labs(
+      title = glue:::glue(&quot;TUS 2024/II, &lt;span style=&#39;color: #95568F;&#39;&gt;{my_branch}&lt;/span&gt;&quot;),
+      subtitle = my_subtitle,
+      x = &quot;Puan&quot;,
+      y = &quot;&quot;,
+      caption = &quot;&lt;i style=&#39;color:#009900&#39;&gt;Yeşil&lt;/i&gt; : Kadrolar tam dolu&lt;br&gt;&lt;i style=&#39;color:#ff6666&#39;&gt;Kırmızı&lt;/i&gt;: Kadrolar tam boş&lt;br&gt;kaynak: ÖSYM&lt;br&gt;by @AliGunerMD&quot;
+    ) +
+    theme(
+      panel.grid = element_line(color = my_white[1]),
+      panel.grid.minor.x = element_blank(),
+      panel.border = element_blank(),
+      axis.text.y = element_markdown(),
+      legend.position = &quot;none&quot;,
+      plot.caption = element_markdown(),
+      plot.title.position = &quot;plot&quot;,
+      plot.title = element_markdown(hjust = .5, size = 14, face = &quot;bold&quot;),
+      plot.subtitle = element_markdown(hjust = .5)
+    )
+
+  return(branch_plot)
+  
+}</code></pre>
+</div>
+<div id="use-defined-function-for-the-branch_names-vector" class="section level3">
+<h3>use defined function for the BRANCH_NAMES vector</h3>
+<pre class="r"><code># branch_names &lt;- unique(clean_tus_2024$brans)
+
+branch_names &lt;- clean_tus_2024 %&gt;%
+  filter(brans != &quot;ASKERİ SAĞLIK HİZMETLERİ&quot;) %&gt;%
+  filter(brans != &quot;HAVA VE UZAY HEKİMLİĞİ&quot;) %&gt;%
+  distinct(brans) %&gt;%
+  pull(brans)
+
+save_ggplot_for_branch &lt;- function(branch_name) {
+  branch_plot &lt;- func_tus(my_branch = branch_name)
+
+  ggsave(branch_plot,
+    file = file.path(&quot;Outputs_2024_2&quot;, paste0(branch_name, &quot;.jpg&quot;)),
+    dpi = 300,
+    width = 9,
+    height = 14
+  )
+}
+
+purrr::walk(branch_names, save_ggplot_for_branch)</code></pre>
+<!-- DO NOT FORGET TO KNIT!!!! -->
+</div>
+</div>
