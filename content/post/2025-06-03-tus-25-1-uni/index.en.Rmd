@@ -1,0 +1,477 @@
+---
+title: "TUS 2025 I.Dönem Sonuçları (Kurum Bazında)"
+date: '2025-06-03T20:14:22+03:00'
+subtitle: 'Kurum bazında branşların MIN-MAX puanları'
+summary: 'TUS 2025 I.Dönem - Kurum bazında branşların MIN-MAX puanlar'
+authors: [admin]
+slug: tus-2025-1-uni
+categories:
+  - AcadeMD
+tags:
+  - OSYM
+  - TUS
+  - Üniversite
+lastmod: '2025-06-03T20:14:22+03:00'
+featured: yes
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: 
+  - AcadeMD
+links:
+ - icon: link
+   icon_pack: fas
+   name: "ÖSYM"
+   url: "https://dokuman.osym.gov.tr/pdfdokuman/2025/TUSDONEM-1/TERCIH/minmax03062025.pdf"
+ - icon: github
+   icon_pack: fab
+   name: GitHub
+   url: "https://github.com/AliGunerMD/aliguner/blob/main/content/post/2025-06-03-tus-25-1-uni/index.en.Rmd"
+ - icon: sistrix
+   icon_pack: fab
+   name: Outputs
+   url: "https://github.com/AliGunerMD/aliguner/blob/main/content/post/2025-06-03-tus-25-1-uni/Outputs_2025_1"
+url_pdf: ""
+url_code: ""
+url_dataset: ""
+url_project: ""
+url_slides: ""
+url_source: ""
+url_video: ""
+editor_options: 
+  chunk_output_type: console
+---
+
+
+```{r setup, include=FALSE}
+
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, out.width = "80%")
+
+```
+
+
+Kurum spesifik sonuçları görmek için;   
+
+Üniversiteler için: [Üniversiteler](https://github.com/AliGunerMD/aliguner/blob/main/content/post/2025-06-03-tus-25-1-uni/Outputs_2025_1/data_uni),    
+Eğitim ve Araştırma Hastaneleri için: [Eğitim ve Araştırma Hastaneleri](https://github.com/AliGunerMD/aliguner/blob/main/content/post/2025-06-03-tus-25-1-uni/Outputs_2025_1/data_eah),  
+Şehir Hastaneleri için: [Şehir Hastaneleri](https://github.com/AliGunerMD/aliguner/blob/main/content/post/2025-06-03-tus-25-1-uni/Outputs_2025_1/data_sehir)  
+sayfalarına gidebilirsiniz.
+
+
+
+Merak edenler kodları görmek isterse de [Outputs](https://github.com/AliGunerMD/aliguner/blob/main/content/post/2025-06-03-tus-25-1-uni/Outputs_2025_1) sayfasına; ya da [GitHub](https://github.com/AliGunerMD/aliguner/blob/main/content/post/2025-06-03-tus-25-1-uni/index.en.Rmd) sayfasına gidebilirsiniz.
+
+<br>
+<br>
+<br>
+<br>
+Veriler ÖSYM sayfasından .pdf dosyası olarak alınıp, R yazılımı ile düzenlenmiştir.
+
+<br>
+Veri seti ile ilgili farklı bir değerlendirme isterseniz [Twitter](https://twitter.com/AliGunerMD) üzerinden ya da [iletişim formu](https://www.aliguner.com/) ile ulaşabilirsiniz.  
+
+<br>
+Yabancı Uyruklu kontenjanları verilere dahil edilmemiştir.
+
+<br>
+p.s.: Çıktılar tek tek kontrol edilmemiştir.   
+
+
+## R Codes
+
+### Import libraries
+
+```{r import library}
+
+#| label: Import libraries
+
+# Define the required package names
+packages <- c("tidyverse", 
+              "here", 
+              "pdftools", 
+              "glue", 
+              "ggtext")
+
+# Function to check, install, and load packages
+load_packages <- function(packages) {
+        
+  for (package in packages) {
+    if (!require(package, character.only = TRUE)) {
+        install.packages(package)
+        library(package, character.only = TRUE)
+    } else {
+      suppressPackageStartupMessages(library(package, character.only = TRUE))
+        # library(package, character.only = TRUE)
+    }
+  }
+}
+
+load_packages(packages)
+
+```
+
+
+
+### Import dataset from [ÖSYM link](https://dokuman.osym.gov.tr/pdfdokuman/2025/TUSDONEM-1/TERCIH/minmax03062025.pdf)
+
+```{r}
+
+kadro_tus <- pdftools::pdf_text(pdf = here::here("datasets", "minmax03062025.pdf")) %>%
+  as_tibble()
+
+```
+
+
+### Clean dataset
+```{r}
+
+kadro_tus_init <- kadro_tus %>%
+  separate_rows(value, sep = "\n") %>%
+  mutate(value = str_squish(value)) %>%
+  filter(value != "") %>%
+  mutate(value = str_remove_all(value, " dipnot \\d")) %>%
+  filter(!str_detect(value, "Kontenjan|2025-TUS")) %>%
+  extract(value, into = c("kurum", "b"), "(.*)/(.*)") %>%
+  extract(b, into = c("brans", "tur", "d"), "(.*)(Yabancı Uyruklu|Genel)(.*)") %>%
+  mutate(
+    d = str_trim(d),
+    brans = str_trim(brans)
+  ) %>%
+  separate(d, into = c("kontenjan", "yerlesen", "bos", "min", "max"), sep = " ") %>%
+  separate(kurum, into = c("number", "kurum"), sep = "^\\d+\\s") %>%
+  select(-number) %>%
+  mutate(
+    kurum = str_replace_all(kurum, "Sağlık Bilimleri Üniversitesi", "SBÜ"),
+    kurum = str_replace_all(kurum, "Eğitim ve Araştırma Hastanesi", "EAH"),
+    kurum = str_replace_all(kurum, "Tıp Fakültesi", "Tıp F"),
+    kurum = str_remove_all(kurum, " \\(ANKARA\\)"),
+    kurum = str_remove_all(kurum, " \\(İSTANBUL\\)"),
+    kurum = str_remove_all(kurum, "Tayfur Ata Sökmen "),
+    kurum = str_remove_all(kurum, "Prof. Dr. ")
+  ) %>%
+  mutate(across(min:max, ~ if_else(. == "--", NA_character_, .))) %>%
+  mutate(across(min:max, ~ str_replace_all(., ",", "."))) %>%
+  mutate(across(kontenjan:max, ~ as.numeric(.))) %>%
+  mutate(across(min:max, ~ round(., 2))) %>%
+  mutate(
+    min = if_else(is.na(min), 0, min),
+    doluluk = 100 * round(yerlesen / kontenjan, 2),
+    kurum_title = if_else(!str_detect(kurum, "SBÜ|EAH"), str_to_title(kurum), kurum),
+    equal_kucuk_puan = if_else(min != max, min, NA_real_)
+  ) %>%
+  filter(
+    brans != "ASKERİ SAĞLIK HİZMETLERİ",
+    brans != "HAVA VE UZAY HEKİMLİĞİ",
+    tur == "Genel"
+  ) %>%
+  mutate(
+    brans_title = str_to_title(brans),
+    brans_title = str_replace_all(brans_title, "i̇", "i"),
+    brans_title = str_replace_all(brans_title, "Hastaliklari", "Hastalıkları"),
+    brans_title = str_replace_all(brans_title, "Kadin", "Kadın"),
+    brans_title = str_replace_all(brans_title, "Sağliği", "Sağlığı"),
+    brans_title = str_replace_all(brans_title, "Ve ", "ve "),
+    brans_title = str_replace_all(brans_title, " Tip", " Tıp"),
+    brans_title = str_replace_all(brans_title, "Tibbi ", "Tıbbi ")
+  ) %>%
+  filter(!str_detect(kurum, "Dr. Sami Ulus")) %>%               # Empty value, causes error in function
+  filter(!str_detect(kurum, "Jandarma Genel Komutanlığı"))  %>%    # Empty value, causes error in function 
+  filter(!str_detect(kurum, "Giresun Kadın Doğum ve Çocuk")) # Empty value, causes error in function
+
+
+```
+
+### Define random colors for each institute (darker color and its lighter version)
+```{r}
+#| label: define colors
+my_grays <- c("#C0C0C0", "#909090", "#696969", "#525252")
+grid_color <- c("#E8E8E8")
+empty_color <- c("#A12123")
+some_empty_color <- c("#919498")
+ktu_color <- c("#003B64", "#1B71AC") # I only know the KTU's official colors. If any database exist, would be great.
+
+
+# Function to generate a random color in hex format
+generate_random_hex_color <- function(seed) {
+  # Set seed for reproducibility
+  set.seed(seed)
+
+  # Generate random values for red, green, and blue components
+  red <- sprintf("%02X", sample(0:255, 1))
+  green <- sprintf("%02X", sample(0:255, 1))
+  blue <- sprintf("%02X", sample(0:255, 1))
+
+  # Combine components into a hex color code
+  hex_color <- paste0("#", red, green, blue)
+
+  return(hex_color)
+}
+
+
+# Function to generate dark and light versions of a color
+generate_dark_light_colors <- function(base_color, dark_factor = 0.7, light_factor = 1.3) {
+  # Convert the hexadecimal color to RGB values
+  base_rgb <- col2rgb(base_color)
+
+  # Calculate dark and light variations
+  dark_rgb <- round(base_rgb * dark_factor)
+  light_rgb <- round(base_rgb * light_factor)
+
+  # Ensure values are within valid RGB range (0-255)
+  dark_rgb <- pmax(0, pmin(255, dark_rgb))
+  light_rgb <- pmax(0, pmin(255, light_rgb))
+
+  # Convert RGB values back to hexadecimal
+  dark_color <- rgb(dark_rgb[1], dark_rgb[2], dark_rgb[3], maxColorValue = 255)
+  light_color <- rgb(light_rgb[1], light_rgb[2], light_rgb[3], maxColorValue = 255)
+
+  return(list(dark_color = dark_color, light_color = light_color))
+}
+
+
+## Create color list
+
+unique_kurums <- unique(kadro_tus_init$kurum)           # List of all institutes
+
+num_colors <- length(unique_kurums)                     # required number of base colors
+base_colors <- replicate(num_colors, generate_random_hex_color(seed = NULL), simplify = FALSE)
+
+my_color_pallette <- map(base_colors, ~ {
+  generated_colors <- generate_dark_light_colors(.x)
+
+  return(list(
+    random_base_color = .x,
+    dark_color = generated_colors$dark_color,
+    light_color = generated_colors$light_color
+  ))
+})
+
+
+## Create institute df with color list
+
+color_for_kurums <- list()
+
+for (i in seq_along(my_color_pallette)) {
+  kurum <- as_tibble(unique_kurums)[[1]][[i]]
+  random_base_color <- my_color_pallette[[i]]$random_base_color
+  dark_color <- my_color_pallette[[i]]$dark_color
+  light_color <- my_color_pallette[[i]]$light_color
+
+  single_kurum_df <- data.frame(kurum, random_base_color, dark_color, light_color)
+
+  # Append the current data frame to the result list
+  color_for_kurums[[i]] <- single_kurum_df
+}
+
+
+## Bind list and Change only KTU colors
+color_for_kurums_df <- list_rbind(color_for_kurums) %>%
+  mutate(
+    random_base_color = if_else(kurum == "Karadeniz Teknik Üniversitesi Tıp F", ktu_color[1], random_base_color),
+    dark_color = if_else(kurum == "Karadeniz Teknik Üniversitesi Tıp F", ktu_color[1], dark_color),
+    light_color = if_else(kurum == "Karadeniz Teknik Üniversitesi Tıp F", ktu_color[2], light_color)
+  )
+
+
+
+```
+
+## Divide dataset into three part for Üniversite - EAH - Sehir Hastanesi
+```{r}
+## To remove some errors in ÖSYM dataset
+kadro_tus_init_colored <- kadro_tus_init %>% 
+    group_by(brans, kurum) %>% 
+    arrange(desc(kontenjan)) %>%
+    slice(1) %>%
+    ungroup() %>% 
+  left_join(color_for_kurums_df, by = "kurum")
+
+## Define sub datasets for Top, EAH, Şehir Hastanesi
+
+data_uni <- kadro_tus_init_colored %>% 
+  filter(str_detect(kurum, "Tıp F"))
+
+data_eah <- kadro_tus_init_colored %>% 
+  filter(str_detect(kurum, " EAH"))
+
+data_sehir <- kadro_tus_init_colored %>% 
+  filter(str_detect(kurum, "Şehir Hastanesi"))
+```
+
+## Custom FUNCTION to plot (Main plot)
+
+```{r}
+func_tus_institute <- function(selected_dataset, my_institute) {
+  
+  clean_institute_2025 <- selected_dataset %>%
+    filter(
+      kurum == {{ my_institute }}
+    ) %>%
+    group_by(brans) %>%
+    arrange(desc(kontenjan)) %>%
+    slice(1) %>%
+    ungroup()
+
+  minmax_branch <- clean_institute_2025 %>%
+    filter(min != 0) %>%
+    summarise(
+      min = min(min, na.rm = TRUE),
+      max = max(max, na.rm = TRUE)
+    )
+
+  doluluk_branch <- clean_institute_2025 %>%
+    summarise(
+      sum_kontenjan = sum(kontenjan, na.rm = TRUE),
+      sum_yerlesen = sum(yerlesen, na.rm = TRUE)
+    ) %>%
+    mutate(doluluk = paste0("%", round(100 * sum_yerlesen / sum_kontenjan, 1)))
+
+
+  lowest <- clean_institute_2025 %>%
+    filter(min != 0) %>%
+    arrange(min) %>%
+    slice_head() %>%
+    pull(brans_title)
+
+  highest <- clean_institute_2025 %>%
+    filter(min != 0) %>%
+    arrange(desc(max)) %>%
+    slice_head() %>%
+    pull(brans_title)
+
+
+  
+  my_light_color <- clean_institute_2025 %>%
+    slice_head() %>%
+    pull(light_color)
+  my_dark_color <- clean_institute_2025 %>%
+    slice_head() %>%
+    pull(dark_color)
+
+
+  my_title <- glue:::glue("TUS 2025/I - <span style='color:{my_dark_color};'>{my_institute}</span>")
+  my_subtitle <- glue::glue("Doluluk: {doluluk_branch$doluluk} ({doluluk_branch$sum_yerlesen}/{doluluk_branch$sum_kontenjan})<br><br> 
+                            En yüksek: **{highest}** ({minmax_branch$max})<br>")
+  my_caption <- glue::glue("<i style='color:{my_dark_color}'>Ana Renk</i>: Kadrolar tam dolu<br>kaynak: ÖSYM<br>@AliGunerMD")
+
+
+  institute_plot <- clean_institute_2025 %>%
+    # ggplot(aes(kontenjan, yerlesen)) +
+    # geom_point()
+    mutate(
+      color = case_when(
+        doluluk == 100 ~ my_dark_color,
+        doluluk == 0 ~ empty_color,
+        TRUE ~ some_empty_color
+      ),
+      name = glue("<i style='color:{color}'>{brans_title}</i> ({yerlesen}\\/{kontenjan})"),
+      mod_min = if_else(yerlesen == 0, -kontenjan, min + 100),
+      name = fct_reorder(name, mod_min)
+    ) %>%
+    ggplot(aes(x = min, y = name, fill = color)) +
+    geom_segment(aes(x = min, xend = max, y = name, yend = name), color = my_grays[3]) +
+    geom_point(aes(x = min, y = name), color = ifelse(clean_institute_2025$doluluk == 100, my_light_color, my_grays[1]), size = 2.5) +
+    geom_point(aes(x = max, y = name), color = ifelse(clean_institute_2025$doluluk == 100, my_dark_color, my_grays[2]), size = 3.5) +
+    theme_light() +
+    scale_x_continuous(limits = c(minmax_branch$min - 2, minmax_branch$max + 2), breaks = seq(40, 80, 5)) +
+    geom_text(aes(x = max, y = name, label = max),
+      hjust = -.5, size = 3,
+      color = ifelse(clean_institute_2025$doluluk == 100, my_dark_color, my_grays[2])
+    ) +
+    geom_text(aes(x = equal_kucuk_puan, y = name, label = equal_kucuk_puan), hjust = 1.5, size = 2.5, color = ifelse(clean_institute_2025$doluluk == 100, my_dark_color, my_grays[2]), alpha = .7, check_overlap = TRUE) +
+    labs(
+      x = "Puan",
+      y = "",
+      title = my_title,
+      caption = my_caption,
+      subtitle = my_subtitle
+    ) +
+    theme(
+      panel.grid = element_line(color = grid_color),
+      panel.grid.minor.x = element_blank(),
+      # panel.grid.major.y = element_line(color = my_light_color, size = .1),
+      panel.border = element_blank(),
+      axis.text.y = element_markdown(face = "bold"),
+      legend.position = "none",
+      plot.caption = element_markdown(),
+      plot.title.position = "plot",
+      plot.title = element_markdown(hjust = .5, size = 14, face = "bold"),
+      plot.subtitle = element_markdown(hjust = .5)
+    )
+
+  # print(clean_institute_2025$kurum_title)       # used for debugging
+  # print(highest)                                # used for debugging
+  # print(lowest)                                 # used for debugging
+
+
+  return(institute_plot)
+}
+```
+
+
+## Custom FUNCTION to use func_tus_institute() function for all DATASETS and all Institutes (and to save)
+
+```{r}
+datasets <- list(
+  data_sehir = data_sehir,
+  data_eah = data_eah,
+  data_uni = data_uni
+)
+
+# Create the main output folder
+# output_folder <- "content/post/2025-06-03-tus-25-1-uni/Outputs_2025_1"    # to prepare
+output_folder <- "Outputs_2025_1"                                           # to render
+
+dir.create(output_folder, showWarnings = FALSE)
+
+
+# Iterate over datasets
+for (dataset_name in names(datasets)) {
+  dataset <- datasets[[dataset_name]]
+
+  # Create a folder for each dataset within the main output folder
+  dataset_folder <- file.path(output_folder, dataset_name)
+  dir.create(dataset_folder, showWarnings = FALSE)
+
+  # Get unique values of 'kurum' in the current dataset
+  institute_names <- distinct(dataset, kurum) %>%
+    pull(kurum)
+
+  # Iterate over unique 'kurum' values
+  for (institute in institute_names) {
+    # Call the function for the current dataset and 'kurum' value
+    institute_plot <- func_tus_institute(selected_dataset = dataset, my_institute = institute)
+
+    # Save the plot in the 'kurum' folder
+    plot_filename <- file.path(paste0(dataset_folder, "/", as.character(institute), ".jpg"))
+
+    # to select save height dynamically
+    no_brans <- dataset %>%
+      filter(kurum == {{ institute }}) %>%
+      distinct(brans) %>%
+      nrow()
+
+    my_height <- case_when(
+      no_brans >= 30 ~ 12,
+      no_brans >= 20 & no_brans < 30 ~ 11,
+      no_brans >= 10 & no_brans < 20 ~ 10,
+      no_brans >= 5 & no_brans < 10 ~ 6,
+      no_brans < 5 ~ 4,
+      TRUE ~ 11
+    )
+
+    # Save plot
+    ggsave(
+      file = plot_filename,
+      plot = institute_plot,
+      dpi = 300,
+      width = 9,
+      height = 11
+    )
+  }
+}
+
+
+```
+
