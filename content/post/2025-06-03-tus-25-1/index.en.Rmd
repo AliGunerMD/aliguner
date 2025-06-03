@@ -1,6 +1,6 @@
 ---
 title: "TUS 2025 I.Dönem Sonuçları"
-date: '2025-06-03T19:13:27+03:00'
+date: '2025-06-03T13:13:27+03:00'
 subtitle: 'Branşlara göre MIN-MAX puanlar'
 summary: 'TUS 2025 I.Dönem - Branşlara göre MIN-MAX puanlar'
 authors: [admin]
@@ -10,7 +10,7 @@ categories:
 tags:
   - OSYM
   - TUS
-lastmod: '2025-06-03T21:27:27+03:00'
+lastmod: '2025-06-03T17:27:27+03:00'
 featured: yes
 image:
   caption: ''

@@ -1,6 +1,6 @@
 ---
 title: "TUS 2025 I.Dönem Sonuçları (Kurum Bazında)"
-date: '2025-06-03T20:14:22+03:00'
+date: '2025-06-03T13:14:22+03:00'
 subtitle: 'Kurum bazında branşların MIN-MAX puanları'
 summary: 'TUS 2025 I.Dönem - Kurum bazında branşların MIN-MAX puanlar'
 authors: [admin]
@@ -11,7 +11,7 @@ tags:
   - OSYM
   - TUS
   - Üniversite
-lastmod: '2025-06-03T20:14:22+03:00'
+lastmod: '2025-06-03T16:14:22+03:00'
 featured: yes
 image:
   caption: ''
