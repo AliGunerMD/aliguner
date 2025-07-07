@@ -1,10 +1,11 @@
-date: "2023-01-01"
+  ---
+date: "2025-01-01"
 external_link: ""
-title: "Extensive Peritoneal Lavage (EIPL) with Saline After Curative D2 Gastric Resection For Treatment of Locally Advanced Gastric Cancer Patients."
-authors: [Alemdar, A., Erhan, S., **Guner, A.**,  Yılmaz, İ.]
+title: "Extended pharmacological thromboprophylaxis and clinically relevant venous thromboembolism after major abdominal and pelvic surgery: international, prospective, propensity score-weighted cohort study"
+authors: [EuroSurg Collaborative.,  S Collaborative.]
 publication_types: ["2"]
-publication: İzmir Tepecik Eğitim Hastanesi Dergisi
-publication_short: J Tepecik Educ Res Hosp 2023;33(1):85-93
+publication: British Journal of Surgery
+publication_short: NA
 image:
     caption: ""
     focal_point: ""
@@ -17,13 +18,13 @@ links:
  - icon: doi
    icon_pack: ai
    name: DOI
-   url: https://doi.org/10.4274/terh.galenos.2022.82997 
+   url: https://doi.org/NA 
 slides: ""
 abstract: ""
 abstract_short: ""
 tags: []
 categories: 
-  - [NA]
+  - [Collaborative]
 featured: false
 url_pdf: ""
 url_code: ""

@@ -1,10 +1,11 @@
+  ---
 date: "2024-01-01"
 external_link: ""
-title: "A detailed analysis of surgical site infections and risk factors: A multicentric cohort study in Türkiye."
-authors: [Aktas, A., **Guner, A**., Güneş, Ö., Karagül, S., Karaköse, O., Çolak, E., Tardu, A.,  ...]
+title: "Diagnostic models for predicting malignancy in thyroid nodules classified as Bethesda Category III in an endemic region."
+authors: [Kasap, ZA., Kurt, B., Özsağır, E., Ercin, ME.,  Guner, A.]
 publication_types: ["2"]
-publication: Journal of Experimental and Clinical Medicine
-publication_short: NA
+publication: Diagnostic Cytopathology
+publication_short: Diagn Cytopathol. 2024 Apr;52(4):200-210
 image:
     caption: ""
     focal_point: ""
@@ -13,11 +14,11 @@ links:
  - icon: pubmed
    icon_pack: ai
    name: PubMed
-   url: https://www.ncbi.nlm.nih.gov/pubmed/NA 
+   url: https://www.ncbi.nlm.nih.gov/pubmed/38269646 
  - icon: doi
    icon_pack: ai
    name: DOI
-   url: https://doi.org/NA 
+   url: https://doi.org/10.1002/dc.25270 
 slides: ""
 abstract: ""
 abstract_short: ""

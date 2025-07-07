@@ -1,10 +1,11 @@
+  ---
 date: "2023-01-01"
 external_link: ""
-title: "Does surgeon specialization add value to surgeon volume in gastric cancer surgery?."
-authors: [Reis, ME., Ulusahin, M., Cekic, AB., Usta, MA.,  **Guner, A.**]
+title: "Safety and efficacy of intraperitoneal drain placement after emergency colorectal surgery: An international, prospective cohort study."
+authors: [EuroSurg Collaborative.]
 publication_types: ["2"]
-publication: EJSO: European Journal of Surgical Oncology
-publication_short: Eur J Surg Oncol. 2023 Nov;49(11):107091.
+publication: Colorectal Disease
+publication_short: Colorectal Dis. 2023 Oct;25(10):2043-2053
 image:
     caption: ""
     focal_point: ""
@@ -13,17 +14,17 @@ links:
  - icon: pubmed
    icon_pack: ai
    name: PubMed
-   url: https://www.ncbi.nlm.nih.gov/pubmed/37757682 
+   url: https://www.ncbi.nlm.nih.gov/pubmed/37700554 
  - icon: doi
    icon_pack: ai
    name: DOI
-   url: https://doi.org/10.1016/j.ejso.2023.107091 
+   url: https://doi.org/10.1111/codi.16737 
 slides: ""
 abstract: ""
 abstract_short: ""
 tags: []
 categories: 
-  - [UGI]
+  - [Collaborative]
 featured: false
 url_pdf: ""
 url_code: ""

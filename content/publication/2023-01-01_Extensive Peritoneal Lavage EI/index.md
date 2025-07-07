@@ -1,10 +1,11 @@
-date: "2024-01-01"
+  ---
+date: "2023-01-01"
 external_link: ""
-title: "Respond to “Comments on ‘Diagnostic models for predicting malignancy in thyroid nodules classified as Bethesda category III in an endemic region’”."
-authors: [Kasap, Z Aydın., Kurt, B., Özsağır, E., Ercin, ME.,  **Guner, A**.]
+title: "Extensive Peritoneal Lavage (EIPL) with Saline After Curative D2 Gastric Resection For Treatment of Locally Advanced Gastric Cancer Patients."
+authors: [Alemdar, A., Erhan, S., Guner, A.,  Yılmaz, İ.]
 publication_types: ["2"]
-publication: Diagnostic Cytopathology
-publication_short: NA
+publication: İzmir Tepecik Eğitim Hastanesi Dergisi
+publication_short: J Tepecik Educ Res Hosp 2023;33(1):85-93
 image:
     caption: ""
     focal_point: ""
@@ -17,7 +18,7 @@ links:
  - icon: doi
    icon_pack: ai
    name: DOI
-   url: https://doi.org/NA 
+   url: https://doi.org/10.4274/terh.galenos.2022.82997 
 slides: ""
 abstract: ""
 abstract_short: ""

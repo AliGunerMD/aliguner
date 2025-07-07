@@ -1,10 +1,11 @@
+  ---
 date: "2023-01-01"
 external_link: ""
-title: "Outcomes of the use of hyaluronic acid-based wound dressings for the treatment of partial-thickness facial burns."
-authors: [Yildirim, R., **Guner, A.**, Cekic, AB., Usta, MA., Ulusahin, M.,  Turkyilmaz, S.]
+title: "A novel computer based risk prediction model for vocal cord palsy before thyroidectomy."
+authors: [Kurt, B., Kırkbir, İB., Kurt, T., Guner, A.,  Uluşahin, M.]
 publication_types: ["2"]
-publication: Journal of Burn Care & Research
-publication_short: J Burn Care Res. 2023 May 2;44(3):551-554
+publication: Computer Methods and Programs in Biomedicine
+publication_short: Comput Methods Programs Biomed. 2023 Jun:236:107563
 image:
     caption: ""
     focal_point: ""
@@ -13,11 +14,11 @@ links:
  - icon: pubmed
    icon_pack: ai
    name: PubMed
-   url: https://www.ncbi.nlm.nih.gov/pubmed/30715375 
+   url: https://www.ncbi.nlm.nih.gov/pubmed/37137220 
  - icon: doi
    icon_pack: ai
    name: DOI
-   url: https://doi.org/10.1093/jbcr/irz004 
+   url: https://doi.org/10.1016/j.cmpb.2023.107563. 
 slides: ""
 abstract: ""
 abstract_short: ""

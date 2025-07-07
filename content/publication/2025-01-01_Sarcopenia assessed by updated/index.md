@@ -1,9 +1,10 @@
+  ---
 date: "2025-01-01"
 external_link: ""
-title: "Dermatological manifestations in patients with gastrointestinal malignancies: a focus on early diagnosis and patient comfort."
-authors: [Demirci, BA., Arica, DA., Selcuk, LB., Fidan, E., **Guner, A.**, Yayli, S.,  Arica, İE.]
+title: "Sarcopenia assessed by updated EWGSOP criteria: impact on survival in patients undergoing curative gastrectomy for gastric cancer."
+authors: [Ulusahin, M., Yildirim, R., Erkul, O., Cekic, AB.,  Guner, A.]
 publication_types: ["2"]
-publication: Anais Brasileiros de Dermatologia
+publication: European Surgery
 publication_short: NA
 image:
     caption: ""
@@ -17,7 +18,7 @@ links:
  - icon: doi
    icon_pack: ai
    name: DOI
-   url: https://doi.org/NA 
+   url: https://doi.org/10.1007/s10353-025-00866-1 
 slides: ""
 abstract: ""
 abstract_short: ""

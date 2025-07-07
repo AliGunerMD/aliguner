@@ -1,10 +1,11 @@
+  ---
 date: "2024-01-01"
 external_link: ""
-title: "Novel Textbook Outcomes following emergency laparotomy: Delphi exercise."
-authors: [Naumann, DN., Bhangu, A., Brooks, A., Martin, M., Cotton, BA., Khan, M.,  ...]
+title: "Development and external validation of the'Global Surgical-Site Infection'(GloSSI) predictive model in adult patients undergoing gastrointestinal surgery."
+authors: [McLean, KA., Knight, SR., Clark, N., Adisa, A., Ghosh, D., Haque, PD.,  ...]
 publication_types: ["2"]
-publication: BJS Open
-publication_short: BJS Open. 2024 Jan 3;8(1):zrad145
+publication: British Journal of Surgery
+publication_short: NA
 image:
     caption: ""
     focal_point: ""
@@ -13,11 +14,11 @@ links:
  - icon: pubmed
    icon_pack: ai
    name: PubMed
-   url: https://www.ncbi.nlm.nih.gov/pubmed/38949628 
+   url: https://www.ncbi.nlm.nih.gov/pubmed/NA 
  - icon: doi
    icon_pack: ai
    name: DOI
-   url: https://doi.org/10.1093/bjsopen/zrad145. 
+   url: https://doi.org/10.1093/bjs/znae129 
 slides: ""
 abstract: ""
 abstract_short: ""

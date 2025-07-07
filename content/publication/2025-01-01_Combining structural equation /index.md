@@ -1,9 +1,10 @@
+  ---
 date: "2025-01-01"
 external_link: ""
-title: "Extended pharmacological thromboprophylaxis and clinically relevant venous thromboembolism after major abdominal and pelvic surgery: international, prospective, propensity score-weighted cohort study"
-authors: [EuroSurg Collaborative.,  S Collaborative.]
+title: "Combining structural equation modeling analysis with machine learning for early malignancy detection in Bethesda Category III thyroid nodules."
+authors: [Kasap, ZA., Kurt, B., Guner, A., Özsağır, E.,  Ercin, ME.]
 publication_types: ["2"]
-publication: British Journal of Surgery
+publication: Artificial Intelligence in Medicine
 publication_short: NA
 image:
     caption: ""
@@ -23,7 +24,7 @@ abstract: ""
 abstract_short: ""
 tags: []
 categories: 
-  - [Collaborative]
+  - [NA]
 featured: false
 url_pdf: ""
 url_code: ""

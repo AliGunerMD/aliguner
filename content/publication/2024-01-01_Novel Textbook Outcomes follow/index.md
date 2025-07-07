@@ -1,10 +1,11 @@
-date: "2023-01-01"
+  ---
+date: "2024-01-01"
 external_link: ""
-title: "Safety and efficacy of intraperitoneal drain placement after emergency colorectal surgery: An international, prospective cohort study."
-authors: [EuroSurg Collaborative.]
+title: "Novel Textbook Outcomes following emergency laparotomy: Delphi exercise."
+authors: [Naumann, DN., Bhangu, A., Brooks, A., Martin, M., Cotton, BA., Khan, M.,  ...]
 publication_types: ["2"]
-publication: Colorectal Disease
-publication_short: Colorectal Dis. 2023 Oct;25(10):2043-2053
+publication: BJS Open
+publication_short: BJS Open. 2024 Jan 3;8(1):zrad145
 image:
     caption: ""
     focal_point: ""
@@ -13,11 +14,11 @@ links:
  - icon: pubmed
    icon_pack: ai
    name: PubMed
-   url: https://www.ncbi.nlm.nih.gov/pubmed/37700554 
+   url: https://www.ncbi.nlm.nih.gov/pubmed/38949628 
  - icon: doi
    icon_pack: ai
    name: DOI
-   url: https://doi.org/10.1111/codi.16737 
+   url: https://doi.org/10.1093/bjsopen/zrad145. 
 slides: ""
 abstract: ""
 abstract_short: ""

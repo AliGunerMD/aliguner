@@ -1,9 +1,10 @@
+  ---
 date: "2025-01-01"
 external_link: ""
-title: "Sarcopenia assessed by updated EWGSOP criteria: impact on survival in patients undergoing curative gastrectomy for gastric cancer."
-authors: [Ulusahin, M., Yildirim, R., Erkul, O., Cekic, AB.,  **Guner, A.**]
+title: "Postoperative outcomes after minimally invasive esophagectomy: an international cohort study from the Oesophagogastric Anastomosis Audit (OGAA)."
+authors: [OGAAO Collaborative.]
 publication_types: ["2"]
-publication: European Surgery
+publication: BMC surgery
 publication_short: NA
 image:
     caption: ""
@@ -17,13 +18,13 @@ links:
  - icon: doi
    icon_pack: ai
    name: DOI
-   url: https://doi.org/10.1007/s10353-025-00866-1 
+   url: https://doi.org/NA 
 slides: ""
 abstract: ""
 abstract_short: ""
 tags: []
 categories: 
-  - [UGI]
+  - [Collaborative]
 featured: false
 url_pdf: ""
 url_code: ""

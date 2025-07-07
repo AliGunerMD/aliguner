@@ -1,3 +1,4 @@
+  ---
 date: "2024-01-01"
 external_link: ""
 title: "Goodbye Hartmann trial: a prospective, international, multicenter, observational study on the current use of a surgical procedure developed a century ago."

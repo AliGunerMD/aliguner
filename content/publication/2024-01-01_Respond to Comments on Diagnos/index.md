@@ -1,9 +1,10 @@
+  ---
 date: "2024-01-01"
 external_link: ""
-title: "Development and external validation of the'Global Surgical-Site Infection'(GloSSI) predictive model in adult patients undergoing gastrointestinal surgery."
-authors: [McLean, KA., Knight, SR., Clark, N., Adisa, A., Ghosh, D., Haque, PD.,  ...]
+title: "Respond to “Comments on ‘Diagnostic models for predicting malignancy in thyroid nodules classified as Bethesda category III in an endemic region’”."
+authors: [Kasap, Z Aydın., Kurt, B., Özsağır, E., Ercin, ME.,  Guner, A.]
 publication_types: ["2"]
-publication: British Journal of Surgery
+publication: Diagnostic Cytopathology
 publication_short: NA
 image:
     caption: ""
@@ -17,13 +18,13 @@ links:
  - icon: doi
    icon_pack: ai
    name: DOI
-   url: https://doi.org/10.1093/bjs/znae129 
+   url: https://doi.org/NA 
 slides: ""
 abstract: ""
 abstract_short: ""
 tags: []
 categories: 
-  - [Collaborative]
+  - [NA]
 featured: false
 url_pdf: ""
 url_code: ""
