@@ -274,7 +274,8 @@ purrr::walk(branch_names, save_ggplot_for_branch)
 #### To prepare overall BRANCH based image
 
 overall <- clean_tus_2025 |> 
-  filter(tur == "Genel") |> 
+  filter(tur == "Genel") |>
+  filter(kurum != "Dr. Burhan Nalbantoğlu Devlet Hastanesi") |> 
   filter(!is.na(brans)) |>
   mutate(min = if_else(min == 0, NA_integer_, min)) |> 
     group_by(kurum, brans) %>% # because of the errors, I chose only higher number of position as "GENEL" and ignored the other
@@ -335,7 +336,7 @@ scale_x_continuous(limits = c(minmax_branch_overall$min - 3, minmax_branch_overa
   
  labs(
       title = "TUS 2025/I.Dönem Branşların Min-Max puanları<br>",
-      subtitle = "(Minimum puana göre sıralanmıştır)",
+      subtitle = "(Minimum puana göre sıralanmıştır)<br>Genel kategorisindeki tüm kurumları içerir (Dr. Burhan Nalbantoğlu Devlet Hastanesi çıkarılmıştır)",
       x = "\nPuan",
       y = "",
       caption = "<i style='color:#13bf13'>Yeşil</i> : Kadrolar tam dolu<br>kaynak: ÖSYM<br>by @AliGunerMD"
