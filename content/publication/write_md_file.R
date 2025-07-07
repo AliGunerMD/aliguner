@@ -3,7 +3,9 @@ library(readxl)
 library(glue)
 
 # Excel dosyasını oku
-df <- read_excel("content/publication/mypubs_2025_07.xlsx") 
+df <- read_excel("content/publication/mypubs_2025_07.xlsx") |> 
+  mutate(authors = str_remove_all(authors, "\\*"),
+         kunye = str_squish(kunye)) 
 
 # Dosyaları oluşturmak için istenen klasör yolunu tanımla
 output_folder <- "content/publication/"
@@ -23,13 +25,16 @@ for (i in 1:nrow(df)) {
   
   pubmed_url <- paste0("https://www.ncbi.nlm.nih.gov/pubmed/", row$Pubmed)
   doi_url <- paste0("https://doi.org/", row$doi)
+  authors_list <- str_split(row$authors, "\\., ") |> unlist() |> str_trim() # Yazarları ayır
+  authors_formatted <- paste0('"', authors_list, '"', collapse = ", ")  # Her bir yazarın ismini çift tırnak içine al ve birleştir
   
   # Markdown dosyası içeriğini oluştur
   markdown_content <- glue('
-date: "{date}"
+  ---
+date: "{as.Date(date)}"
 external_link: ""
 title: "{row$title}"
-authors: [{glue_collapse(as.vector(row$authors), sep = ", ")}]
+authors: [{authors_formatted}]
 publication_types: ["2"]
 publication: {row$journal}
 publication_short: {row$kunye}
@@ -51,7 +56,7 @@ abstract: ""
 abstract_short: ""
 tags: []
 categories: 
-  - [{row$categories}]
+  - {row$categories}
 featured: false
 url_pdf: ""
 url_code: ""
@@ -64,8 +69,9 @@ url_video: ""
                              ')
     
     # Dosya ismini oluştur
-    file_name <- glue("{folder_path}{date}-{short_title}.md")
-    
+  file_name <- glue("{folder_path}index.md")
+  
     # Markdown dosyasını yaz
     writeLines(markdown_content, file_name)
 }
+

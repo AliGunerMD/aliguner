@@ -14,7 +14,7 @@ links:
  - icon: pubmed
    icon_pack: ai
    name: PubMed
-   url: https://www.ncbi.nlm.nih.gov/pubmed/NA 
+   url: https://www.ncbi.nlm.nih.gov/pubmed/39944923 
  - icon: doi
    icon_pack: ai
    name: DOI
@@ -25,7 +25,7 @@ abstract_short: ""
 tags: []
 categories: 
   - UGI
-featured: false
+featured: true
 url_pdf: ""
 url_code: ""
 url_dataset: ""
