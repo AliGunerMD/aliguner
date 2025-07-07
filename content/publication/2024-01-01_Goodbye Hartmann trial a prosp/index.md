@@ -5,7 +5,7 @@ title: "Goodbye Hartmann trial: a prospective, international, multicenter, obser
 authors: [Perrone, G., Giuffrida, M., Abu-Zidan, F., Kruger, VF., Livrini, M., Petracca, GL.,  ...]
 publication_types: ["2"]
 publication: World Journal of Emergency Surgery
-publication_short: World J Emerg Surg. 2024 Apr 16;19(1):14.
+publication_short: World J Emerg Surg. 2024 Apr 16;19(1):14.
 image:
     caption: ""
     focal_point: ""

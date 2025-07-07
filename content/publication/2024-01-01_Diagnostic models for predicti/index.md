@@ -5,7 +5,7 @@ title: "Diagnostic models for predicting malignancy in thyroid nodules classifie
 authors: [Kasap, ZA., Kurt, B., Özsağır, E., Ercin, ME.,  Guner, A.]
 publication_types: ["2"]
 publication: Diagnostic Cytopathology
-publication_short: Diagn Cytopathol. 2024 Apr;52(4):200-210
+publication_short: Diagn Cytopathol. 2024 Apr;52(4):200-210
 image:
     caption: ""
     focal_point: ""

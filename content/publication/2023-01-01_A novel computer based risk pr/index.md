@@ -5,7 +5,7 @@ title: "A novel computer based risk prediction model for vocal cord palsy before
 authors: [Kurt, B., Kırkbir, İB., Kurt, T., Guner, A.,  Uluşahin, M.]
 publication_types: ["2"]
 publication: Computer Methods and Programs in Biomedicine
-publication_short: Comput Methods Programs Biomed. 2023 Jun:236:107563
+publication_short: Comput Methods Programs Biomed. 2023 Jun:236:107563
 image:
     caption: ""
     focal_point: ""

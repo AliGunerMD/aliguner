@@ -5,7 +5,7 @@ title: "Postoperative and Pathological Outcomes of CROSS and FLOT as Neoadjuvant
 authors: [OGAA Collaborative.]
 publication_types: ["2"]
 publication: Annals of Surgery
-publication_short: Ann Surg. 2023 May 1;277(5):e1026-e1034.
+publication_short: Ann Surg. 2023 May 1;277(5):e1026-e1034.
 image:
     caption: ""
     focal_point: ""

@@ -5,7 +5,7 @@ title: "Impact of postoperative cardiovascular complications on 30‐day mortali
 authors: [StarSurg Collaborative.,  EuroSurg Collaborative.]
 publication_types: ["2"]
 publication: Anaesthesia
-publication_short: Anaesthesia. 2024 Jul;79(7):715-724.
+publication_short: Anaesthesia. 2024 Jul;79(7):715-724.
 image:
     caption: ""
     focal_point: ""

@@ -5,7 +5,7 @@ title: "Safety and efficacy of intraperitoneal drain placement after emergency c
 authors: [EuroSurg Collaborative.]
 publication_types: ["2"]
 publication: Colorectal Disease
-publication_short: Colorectal Dis. 2023 Oct;25(10):2043-2053
+publication_short: Colorectal Dis. 2023 Oct;25(10):2043-2053
 image:
     caption: ""
     focal_point: ""

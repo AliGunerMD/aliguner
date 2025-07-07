@@ -5,7 +5,7 @@ title: "Impact of opioid-free analgesia on pain severity and patient satisfactio
 authors: [TASMAN Collaborative.]
 publication_types: ["2"]
 publication: British Journal of Surgery
-publication_short: Br J Surg. 2024 Jan 3;111(1):znad421.
+publication_short: Br J Surg. 2024 Jan 3;111(1):znad421.
 image:
     caption: ""
     focal_point: ""

@@ -5,7 +5,7 @@ title: "Pathological complete response and associated factors in breast cancer a
 authors: [Gündoğdu, A., Uluşahin, M., Çekiç, AB., Kazaz, SN.,  Guner, A.]
 publication_types: ["2"]
 publication: Turkish Journal of Surgery
-publication_short: Turk J Surg. 2024 Mar 23;40(1):73-81
+publication_short: Turk J Surg. 2024 Mar 23;40(1):73-81
 image:
     caption: ""
     focal_point: ""

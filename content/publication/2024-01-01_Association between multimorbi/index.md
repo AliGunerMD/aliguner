@@ -5,7 +5,7 @@ title: "Association between multimorbidity and postoperative mortality in patien
 authors: [STARSurg Collaborative., EuroSurg Collaborative., Kamarajah, SK., Kouli, O.,  ...]
 publication_types: ["2"]
 publication: Anaesthesia
-publication_short: Anaesthesia. 2024 Sep;79(9):945-956.
+publication_short: Anaesthesia. 2024 Sep;79(9):945-956.
 image:
     caption: ""
     focal_point: ""

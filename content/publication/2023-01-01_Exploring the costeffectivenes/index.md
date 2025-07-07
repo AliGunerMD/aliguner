@@ -5,7 +5,7 @@ title: "Exploring the cost-effectiveness of high versus low perioperative fracti
 authors: [GlobalSurg Collaborative.]
 publication_types: ["2"]
 publication: BJA Open
-publication_short: BJA Open. 2023 Jul 15:7:100207.
+publication_short: BJA Open. 2023 Jul 15:7:100207.
 image:
     caption: ""
     focal_point: ""

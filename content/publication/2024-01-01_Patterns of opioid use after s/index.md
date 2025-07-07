@@ -5,7 +5,7 @@ title: "Patterns of opioid use after surgical discharge: a multicentre, prospect
 authors: [TASMAN Collaborative., Gaborit, L., Kalyanasundaram, K., Vu, J., Basam, A.,  ...]
 publication_types: ["2"]
 publication: Anaesthesia
-publication_short: Anaesthesia. 2024 Sep;79(9):924-936.
+publication_short: Anaesthesia. 2024 Sep;79(9):924-936.
 image:
     caption: ""
     focal_point: ""

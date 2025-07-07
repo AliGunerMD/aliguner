@@ -5,7 +5,7 @@ title: "Predictors of anastomotic leak and conduit necrosis after oesophagectomy
 authors: [Griffiths, EA., OGAAO Collaborative., Halle-Smith, JM., Kamarajah, SK.,  ...]
 publication_types: ["2"]
 publication: European Journal of Surgical Oncology
-publication_short: Eur J Surg Oncol. 2024 Jun;50(6):107983.
+publication_short: Eur J Surg Oncol. 2024 Jun;50(6):107983.
 image:
     caption: ""
     focal_point: ""

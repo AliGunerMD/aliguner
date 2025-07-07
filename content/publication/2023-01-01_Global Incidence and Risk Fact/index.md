@@ -5,7 +5,7 @@ title: "Global Incidence and Risk Factors Associated With Postoperative Urinary 
 authors: [Croghan, SM., Mohan, HM., Breen, KJ., McGovern, R., Bennett, KE., Boland, MR.,  ...]
 publication_types: ["2"]
 publication: JAMA surgery
-publication_short: JAMA Surg. 2023 Aug 1;158(8):865-873.
+publication_short: JAMA Surg. 2023 Aug 1;158(8):865-873.
 image:
     caption: ""
     focal_point: ""
