@@ -2,7 +2,7 @@
 date: "2023-01-01"
 external_link: ""
 title: "A novel computer based risk prediction model for vocal cord palsy before thyroidectomy."
-authors: [Kurt, B., Kırkbir, İB., Kurt, T., Guner, A.,  Uluşahin, M.]
+authors: ["Kurt, B", "Kırkbir, İB", "Kurt, T", "Guner, A", "Uluşahin, M."]
 publication_types: ["2"]
 publication: Computer Methods and Programs in Biomedicine
 publication_short: Comput Methods Programs Biomed. 2023 Jun:236:107563

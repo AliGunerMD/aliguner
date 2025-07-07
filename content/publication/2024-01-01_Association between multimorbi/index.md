@@ -2,7 +2,7 @@
 date: "2024-01-01"
 external_link: ""
 title: "Association between multimorbidity and postoperative mortality in patients undergoing major surgery: a prospective study in 29 countries across Europe."
-authors: [STARSurg Collaborative., EuroSurg Collaborative., Kamarajah, SK., Kouli, O.,  ...]
+authors: ["STARSurg Collaborative", "EuroSurg Collaborative", "Kamarajah, SK", "Kouli, O", "..."]
 publication_types: ["2"]
 publication: Anaesthesia
 publication_short: Anaesthesia. 2024 Sep;79(9):945-956.

@@ -2,7 +2,7 @@
 date: "2024-01-01"
 external_link: ""
 title: "Pathological complete response and associated factors in breast cancer after neoadjuvant chemotherapy: A retrospective study."
-authors: [Gündoğdu, A., Uluşahin, M., Çekiç, AB., Kazaz, SN.,  Guner, A.]
+authors: ["Gündoğdu, A", "Uluşahin, M", "Çekiç, AB", "Kazaz, SN", "Guner, A."]
 publication_types: ["2"]
 publication: Turkish Journal of Surgery
 publication_short: Turk J Surg. 2024 Mar 23;40(1):73-81

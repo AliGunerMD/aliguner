@@ -2,7 +2,7 @@
 date: "2025-01-01"
 external_link: ""
 title: "Extended pharmacological thromboprophylaxis and clinically relevant venous thromboembolism after major abdominal and pelvic surgery: international, prospective, propensity score-weighted cohort study"
-authors: [EuroSurg Collaborative.,  S Collaborative.]
+authors: ["EuroSurg Collaborative", "S Collaborative."]
 publication_types: ["2"]
 publication: British Journal of Surgery
 publication_short: NA

@@ -2,7 +2,7 @@
 date: "2024-01-01"
 external_link: ""
 title: "Diagnostic models for predicting malignancy in thyroid nodules classified as Bethesda Category III in an endemic region."
-authors: [Kasap, ZA., Kurt, B., Özsağır, E., Ercin, ME.,  Guner, A.]
+authors: ["Kasap, ZA", "Kurt, B", "Özsağır, E", "Ercin, ME", "Guner, A."]
 publication_types: ["2"]
 publication: Diagnostic Cytopathology
 publication_short: Diagn Cytopathol. 2024 Apr;52(4):200-210

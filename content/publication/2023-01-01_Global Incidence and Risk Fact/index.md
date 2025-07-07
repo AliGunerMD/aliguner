@@ -2,7 +2,7 @@
 date: "2023-01-01"
 external_link: ""
 title: "Global Incidence and Risk Factors Associated With Postoperative Urinary Retention Following Elective Inguinal Hernia RepairThe Retention of Urine After Inguinal Hernia Elective Repair (RETAINER I) Study"
-authors: [Croghan, SM., Mohan, HM., Breen, KJ., McGovern, R., Bennett, KE., Boland, MR.,  ...]
+authors: ["Croghan, SM", "Mohan, HM", "Breen, KJ", "McGovern, R", "Bennett, KE", "Boland, MR", "..."]
 publication_types: ["2"]
 publication: JAMA surgery
 publication_short: JAMA Surg. 2023 Aug 1;158(8):865-873.

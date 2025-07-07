@@ -2,7 +2,7 @@
 date: "2023-01-01"
 external_link: ""
 title: "Outcomes of the use of hyaluronic acid-based wound dressings for the treatment of partial-thickness facial burns."
-authors: [Yildirim, R., Guner, A., Cekic, AB., Usta, MA., Ulusahin, M.,  Turkyilmaz, S.]
+authors: ["Yildirim, R", "Guner, A", "Cekic, AB", "Usta, MA", "Ulusahin, M", "Turkyilmaz, S."]
 publication_types: ["2"]
 publication: Journal of Burn Care & Research
 publication_short: J Burn Care Res. 2023 May 2;44(3):551-554

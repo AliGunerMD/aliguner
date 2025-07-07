@@ -2,7 +2,7 @@
 date: "2024-01-01"
 external_link: ""
 title: "Impact of opioid-free analgesia on pain severity and patient satisfaction after discharge from surgery: multispecialty, prospective cohort study in 25 countries."
-authors: [TASMAN Collaborative.]
+authors: ["TASMAN Collaborative."]
 publication_types: ["2"]
 publication: British Journal of Surgery
 publication_short: Br J Surg. 2024 Jan 3;111(1):znad421.

@@ -2,9 +2,9 @@
 date: "2023-01-01"
 external_link: ""
 title: "Does surgeon specialization add value to surgeon volume in gastric cancer surgery?."
-authors: [Reis, ME., Ulusahin, M., Cekic, AB., Usta, MA.,  Guner, A.]
+authors: ["Reis, ME", "Ulusahin, M", "Cekic, AB", "Usta, MA", "Guner, A."]
 publication_types: ["2"]
-publication: EJSO: European Journal of Surgical Oncology
+publication: European Journal of Surgical Oncology
 publication_short: Eur J Surg Oncol. 2023 Nov;49(11):107091.
 image:
     caption: ""

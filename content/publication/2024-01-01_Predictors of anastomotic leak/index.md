@@ -2,7 +2,7 @@
 date: "2024-01-01"
 external_link: ""
 title: "Predictors of anastomotic leak and conduit necrosis after oesophagectomy: Results from the oesophago-gastric anastomosis audit (OGAA)."
-authors: [Griffiths, EA., OGAAO Collaborative., Halle-Smith, JM., Kamarajah, SK.,  ...]
+authors: ["Griffiths, EA", "OGAAO Collaborative", "Halle-Smith, JM", "Kamarajah, SK", "..."]
 publication_types: ["2"]
 publication: European Journal of Surgical Oncology
 publication_short: Eur J Surg Oncol. 2024 Jun;50(6):107983.

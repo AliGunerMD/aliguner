@@ -2,7 +2,7 @@
 date: "2024-01-01"
 external_link: ""
 title: "Development and external validation of the'Global Surgical-Site Infection'(GloSSI) predictive model in adult patients undergoing gastrointestinal surgery."
-authors: [McLean, KA., Knight, SR., Clark, N., Adisa, A., Ghosh, D., Haque, PD.,  ...]
+authors: ["McLean, KA", "Knight, SR", "Clark, N", "Adisa, A", "Ghosh, D", "Haque, PD", "..."]
 publication_types: ["2"]
 publication: British Journal of Surgery
 publication_short: NA

@@ -2,7 +2,7 @@
 date: "2025-01-01"
 external_link: ""
 title: "Combining structural equation modeling analysis with machine learning for early malignancy detection in Bethesda Category III thyroid nodules."
-authors: [Kasap, ZA., Kurt, B., Guner, A., Özsağır, E.,  Ercin, ME.]
+authors: ["Kasap, ZA", "Kurt, B", "Guner, A", "Özsağır, E", "Ercin, ME."]
 publication_types: ["2"]
 publication: Artificial Intelligence in Medicine
 publication_short: NA

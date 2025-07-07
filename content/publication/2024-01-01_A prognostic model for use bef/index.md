@@ -2,7 +2,7 @@
 date: "2024-01-01"
 external_link: ""
 title: "A prognostic model for use before elective surgery to estimate the risk of postoperative pulmonary complications (GSU-Pulmonary Score): a development and validation study in three international cohorts"
-authors: [Bravo, L., Simões, JFF., Guner, A., Adisa, A., Aguilera, ML., Arnaud, A., Biccard, B.,  ...]
+authors: ["Bravo, L", "Simões, JFF", "Guner, A", "Adisa, A", "Aguilera, ML", "Arnaud, A", "Biccard, B", "..."]
 publication_types: ["2"]
 publication: The Lancet Digital Health
 publication_short: Lancet Digit Health. 2024 Jul;6(7):e507-e519.

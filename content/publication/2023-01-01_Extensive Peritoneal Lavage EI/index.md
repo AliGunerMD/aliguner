@@ -2,7 +2,7 @@
 date: "2023-01-01"
 external_link: ""
 title: "Extensive Peritoneal Lavage (EIPL) with Saline After Curative D2 Gastric Resection For Treatment of Locally Advanced Gastric Cancer Patients."
-authors: [Alemdar, A., Erhan, S., Guner, A.,  Yılmaz, İ.]
+authors: ["Alemdar, A", "Erhan, S", "Guner, A", "Yılmaz, İ."]
 publication_types: ["2"]
 publication: İzmir Tepecik Eğitim Hastanesi Dergisi
 publication_short: J Tepecik Educ Res Hosp 2023;33(1):85-93

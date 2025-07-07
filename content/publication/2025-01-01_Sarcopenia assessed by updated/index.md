@@ -2,7 +2,7 @@
 date: "2025-01-01"
 external_link: ""
 title: "Sarcopenia assessed by updated EWGSOP criteria: impact on survival in patients undergoing curative gastrectomy for gastric cancer."
-authors: [Ulusahin, M., Yildirim, R., Erkul, O., Cekic, AB.,  Guner, A.]
+authors: ["Ulusahin, M", "Yildirim, R", "Erkul, O", "Cekic, AB", "Guner, A."]
 publication_types: ["2"]
 publication: European Surgery
 publication_short: NA

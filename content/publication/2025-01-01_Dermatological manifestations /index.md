@@ -2,7 +2,7 @@
 date: "2025-01-01"
 external_link: ""
 title: "Dermatological manifestations in patients with gastrointestinal malignancies: a focus on early diagnosis and patient comfort."
-authors: [Demirci, BA., Arica, DA., Selcuk, LB., Fidan, E., Guner, A., Yayli, S.,  Arica, İE.]
+authors: ["Demirci, BA", "Arica, DA", "Selcuk, LB", "Fidan, E", "Guner, A", "Yayli, S", "Arica, İE."]
 publication_types: ["2"]
 publication: Anais Brasileiros de Dermatologia
 publication_short: NA

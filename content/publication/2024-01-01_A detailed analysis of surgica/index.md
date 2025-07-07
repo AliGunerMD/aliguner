@@ -2,7 +2,7 @@
 date: "2024-01-01"
 external_link: ""
 title: "A detailed analysis of surgical site infections and risk factors: A multicentric cohort study in Türkiye."
-authors: [Aktas, A., Guner, A., Güneş, Ö., Karagül, S., Karaköse, O., Çolak, E., Tardu, A.,  ...]
+authors: ["Aktas, A", "Guner, A", "Güneş, Ö", "Karagül, S", "Karaköse, O", "Çolak, E", "Tardu, A", "..."]
 publication_types: ["2"]
 publication: Journal of Experimental and Clinical Medicine
 publication_short: NA

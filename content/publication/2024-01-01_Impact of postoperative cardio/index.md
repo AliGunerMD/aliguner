@@ -2,7 +2,7 @@
 date: "2024-01-01"
 external_link: ""
 title: "Impact of postoperative cardiovascular complications on 30‐day mortality after major abdominal surgery: an international prospective cohort study."
-authors: [StarSurg Collaborative.,  EuroSurg Collaborative.]
+authors: ["StarSurg Collaborative", "EuroSurg Collaborative."]
 publication_types: ["2"]
 publication: Anaesthesia
 publication_short: Anaesthesia. 2024 Jul;79(7):715-724.

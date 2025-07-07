@@ -2,7 +2,7 @@
 date: "2024-01-01"
 external_link: ""
 title: "Goodbye Hartmann trial: a prospective, international, multicenter, observational study on the current use of a surgical procedure developed a century ago."
-authors: [Perrone, G., Giuffrida, M., Abu-Zidan, F., Kruger, VF., Livrini, M., Petracca, GL.,  ...]
+authors: ["Perrone, G", "Giuffrida, M", "Abu-Zidan, F", "Kruger, VF", "Livrini, M", "Petracca, GL", "..."]
 publication_types: ["2"]
 publication: World Journal of Emergency Surgery
 publication_short: World J Emerg Surg. 2024 Apr 16;19(1):14.

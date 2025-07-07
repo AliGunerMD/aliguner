@@ -2,7 +2,7 @@
 date: "2023-01-01"
 external_link: ""
 title: "Exploring the cost-effectiveness of high versus low perioperative fraction of inspired oxygen in the prevention of surgical site infections among abdominal surgery patients in three low- and middle-income countries"
-authors: [GlobalSurg Collaborative.]
+authors: ["GlobalSurg Collaborative."]
 publication_types: ["2"]
 publication: BJA Open
 publication_short: BJA Open. 2023 Jul 15:7:100207.

@@ -2,7 +2,7 @@
 date: "2025-01-01"
 external_link: ""
 title: "Head‐down tilt lithotomy position and well‐leg compartment syndrome: An international survey of current practice."
-authors: [Uzoma, CC., Shepherd, AI., Saynor, ZL., Khan, JS., Piozzi, GN., Duhoky, R.,  ...]
+authors: ["Uzoma, CC", "Shepherd, AI", "Saynor, ZL", "Khan, JS", "Piozzi, GN", "Duhoky, R", "..."]
 publication_types: ["2"]
 publication: Colorectal Disease
 publication_short: NA

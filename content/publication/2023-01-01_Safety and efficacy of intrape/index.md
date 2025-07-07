@@ -2,7 +2,7 @@
 date: "2023-01-01"
 external_link: ""
 title: "Safety and efficacy of intraperitoneal drain placement after emergency colorectal surgery: An international, prospective cohort study."
-authors: [EuroSurg Collaborative.]
+authors: ["EuroSurg Collaborative."]
 publication_types: ["2"]
 publication: Colorectal Disease
 publication_short: Colorectal Dis. 2023 Oct;25(10):2043-2053
