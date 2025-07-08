@@ -5,7 +5,7 @@ title: "A detailed analysis of surgical site infections and risk factors: A mult
 authors: ["Aktas, A", "Guner, A", "Güneş, Ö", "Karagül, S", "Karaköse, O", "Çolak, E", "Tardu, A", "..."]
 publication_types: ["2"]
 publication: Journal of Experimental and Clinical Medicine
-publication_short: J Exp Clin Med 2024; 41(2): 361-369
+publication_short: J Exp Clin Med 2024;41(2);361-369
 image:
     caption: ""
     focal_point: ""

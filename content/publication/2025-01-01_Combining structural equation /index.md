@@ -5,7 +5,7 @@ title: "Combining structural equation modeling analysis with machine learning fo
 authors: ["Kasap, ZA", "Kurt, B", "Guner, A", "Özsağır, E", "Ercin, ME."]
 publication_types: ["2"]
 publication: Artificial Intelligence in Medicine
-publication_short: Artif Intell Med. 2025 May 30:167:103186
+publication_short: Artif Intell Med2025;30;167;103186
 image:
     caption: ""
     focal_point: ""
