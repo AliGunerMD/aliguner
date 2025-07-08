@@ -25,7 +25,7 @@ abstract_short: ""
 tags: []
 categories: 
   - NA
-featured: true
+featured: false
 url_pdf: ""
 url_code: ""
 url_dataset: ""

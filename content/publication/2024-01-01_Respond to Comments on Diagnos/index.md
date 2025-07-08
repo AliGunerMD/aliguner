@@ -5,7 +5,7 @@ title: "Respond to “Comments on ‘Diagnostic models for predicting malignancy
 authors: ["Kasap, Z Aydın", "Kurt, B", "Özsağır, E", "Ercin, ME", "Guner, A."]
 publication_types: ["2"]
 publication: Diagnostic Cytopathology
-publication_short: NA
+publication_short: Diagn Cytopathol 2024 May;52(5):290-291.
 image:
     caption: ""
     focal_point: ""
@@ -14,11 +14,11 @@ links:
  - icon: pubmed
    icon_pack: ai
    name: PubMed
-   url: https://www.ncbi.nlm.nih.gov/pubmed/NA 
+   url: https://www.ncbi.nlm.nih.gov/pubmed/38504597 
  - icon: doi
    icon_pack: ai
    name: DOI
-   url: https://doi.org/NA 
+   url: https://doi.org/10.1002/dc.25303 
 slides: ""
 abstract: ""
 abstract_short: ""

@@ -5,7 +5,7 @@ title: "Postoperative outcomes after minimally invasive esophagectomy: an intern
 authors: ["OGAAO Collaborative."]
 publication_types: ["2"]
 publication: BMC surgery
-publication_short: NA
+publication_short: BMC Surg . 2025 May 22;25(1):225
 image:
     caption: ""
     focal_point: ""
@@ -14,11 +14,11 @@ links:
  - icon: pubmed
    icon_pack: ai
    name: PubMed
-   url: https://www.ncbi.nlm.nih.gov/pubmed/NA 
+   url: https://www.ncbi.nlm.nih.gov/pubmed/40405118 
  - icon: doi
    icon_pack: ai
    name: DOI
-   url: https://doi.org/NA 
+   url: https://doi.org/10.1186/s12893-025-02941-6 
 slides: ""
 abstract: ""
 abstract_short: ""

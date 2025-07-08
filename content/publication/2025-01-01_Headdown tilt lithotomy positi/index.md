@@ -5,7 +5,7 @@ title: "Head‐down tilt lithotomy position and well‐leg compartment syndrome:
 authors: ["Uzoma, CC", "Shepherd, AI", "Saynor, ZL", "Khan, JS", "Piozzi, GN", "Duhoky, R", "..."]
 publication_types: ["2"]
 publication: Colorectal Disease
-publication_short: NA
+publication_short: Colorectal Dis . 2025 Jun;27(6):e70134
 image:
     caption: ""
     focal_point: ""
@@ -14,11 +14,11 @@ links:
  - icon: pubmed
    icon_pack: ai
    name: PubMed
-   url: https://www.ncbi.nlm.nih.gov/pubmed/NA 
+   url: https://www.ncbi.nlm.nih.gov/pubmed/40481693 
  - icon: doi
    icon_pack: ai
    name: DOI
-   url: https://doi.org/NA 
+   url: https://doi.org/10.1111/codi.70134 
 slides: ""
 abstract: ""
 abstract_short: ""

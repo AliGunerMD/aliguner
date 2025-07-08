@@ -24,7 +24,7 @@ abstract: ""
 abstract_short: ""
 tags: []
 categories: 
-  - NA
+  - AI
 featured: false
 url_pdf: ""
 url_code: ""

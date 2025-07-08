@@ -5,7 +5,7 @@ title: "Extended pharmacological thromboprophylaxis and clinically relevant veno
 authors: ["EuroSurg Collaborative", "S Collaborative."]
 publication_types: ["2"]
 publication: British Journal of Surgery
-publication_short: NA
+publication_short: BJS 2025; 112(3):znaf005
 image:
     caption: ""
     focal_point: ""
