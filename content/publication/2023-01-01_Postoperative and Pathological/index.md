@@ -2,7 +2,7 @@
 date: "2023-01-01"
 external_link: ""
 title: "Postoperative and Pathological Outcomes of CROSS and FLOT as Neoadjuvant Therapy for Esophageal and Junctional Adenocarcinoma: An International Cohort Study From the Oesophagogastric Anastomosis Audit (OGAA)"
-authors: ["OGAA Collaborative."]
+authors: ["OGAA Collaborative,"]
 publication_types: ["2"]
 publication: Annals of Surgery
 publication_short: Ann Surg. 2023 May 1;277(5):e1026-e1034.

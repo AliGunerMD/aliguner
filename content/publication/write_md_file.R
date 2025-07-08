@@ -1,6 +1,6 @@
-library(tidyverse)
-library(readxl)
-library(glue)
+# library(tidyverse)
+# library(readxl)
+# library(glue)
 
 # Excel dosyasını oku
 df <- read_excel("content/publication/mypubs_2025_07.xlsx") |> 

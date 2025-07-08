@@ -2,7 +2,7 @@
 date: "2025-01-01"
 external_link: ""
 title: "Postoperative outcomes after minimally invasive esophagectomy: an international cohort study from the Oesophagogastric Anastomosis Audit (OGAA)."
-authors: ["OGAAO Collaborative."]
+authors: ["OGAAO Collaborative,"]
 publication_types: ["2"]
 publication: BMC surgery
 publication_short: BMC Surg . 2025 May 22;25(1):225

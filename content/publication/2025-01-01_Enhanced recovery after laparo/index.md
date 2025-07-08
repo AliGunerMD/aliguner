@@ -18,7 +18,7 @@ links:
  - icon: doi
    icon_pack: ai
    name: DOI
-   url: https://doi.org/10.4174/astr.2025.108.2.86. 
+   url: https://doi.org/10.4174/astr.2025.108.2.86 
 slides: ""
 abstract: ""
 abstract_short: ""
