@@ -13,3 +13,4 @@ renv.lock
 /datasets
 (^|/)renv$
 renv\\.lock$
+.positai

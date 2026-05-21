@@ -1,0 +1,398 @@
+---
+title: "TUS 2026 I.Dönem Sonuçları"
+date: '2026-05-21T13:32:27+03:00'
+subtitle: 'Branşlara göre MIN-MAX puanlar'
+summary: 'TUS 2026 I.Dönem - Branşlara göre MIN-MAX puanlar'
+authors: [admin]
+slug: tus-2026-1
+categories:
+  - AcadeMD
+tags:
+  - OSYM
+  - TUS
+lastmod: '2026-05-21T13:32:27+03:00'
+featured: yes
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: 
+  - AcadeMD
+links:
+ - icon: link
+   icon_pack: fas
+   name: "ÖSYM"
+   url: "https://dokuman.osym.gov.tr/pdfdokuman/2026/TUSDONEM-1/YERLESTIRME/SB/minmax_ts1d21052026.pdf"
+ - icon: github
+   icon_pack: fab
+   name: GitHub
+   url: "https://github.com/AliGunerMD/aliguner/blob/main/content/post/2026-05-21-tus-26-1/index.en.Rmd"
+ - icon: sistrix
+   icon_pack: fab
+   name: Outputs
+   url: "https://github.com/AliGunerMD/aliguner/blob/main/content/post/2026-05-21-tus-26-1/Outputs_2026_1"
+url_pdf: ""
+url_code: ""
+url_dataset: ""
+url_project: ""
+url_slides: ""
+url_source: ""
+url_video: ""
+editor_options: 
+  chunk_output_type: console
+---
+
+
+
+<p>Branş-spesific sonuçları görmek için <a href="https://github.com/AliGunerMD/aliguner/blob/main/content/post/2026-05-21-tus-26-1/Outputs_2026_1">Outputs</a> sayfasına;<br />
+Merak edenler kodları görmek isterse de <a href="https://github.com/AliGunerMD/aliguner/blob/main/content/post/2026-05-21-tus-26-1/index.en.Rmd">GitHub</a> sayfasına gidebilirsiniz.</p>
+<p><br>
+<br>
+Veriler ÖSYM sayfasından .pdf dosyası olarak alınıp, R yazılımı ile düzenlenmiştir.</p>
+<p><br>
+Veri seti ile ilgili farklı bir değerlendirme isterseniz <a href="https://twitter.com/AliGunerMD">Twitter</a> üzerinden ya da <a href="https://www.aliguner.com/">iletişim formu</a> ile ulaşabilirsiniz. Örn: Kurum spesific veriler.</p>
+<p><br>
+Yabancı Uyruklu kontenjanları verilere dahil edilmemiştir.<br />
+Onlar için de ayrı bir figüre hazırlanabilir.</p>
+<p><br>
+Verilerde hata varsa muhtemel ÖSYM pdf dosyası ya da kod kaynaklıdır.</p>
+<div id="r-codes" class="section level2">
+<h2>R Codes</h2>
+<div id="import-libraries" class="section level3">
+<h3>Import libraries</h3>
+<pre class="r"><code>library(tidyverse)
+library(pdftools)
+library(glue)
+library(ggtext)
+
+
+my_greens &lt;- c(&quot;#13bf13&quot;, &quot;#009900&quot;)
+my_grays &lt;- c(&quot;#C0C0C0&quot;, &quot;#909090&quot;, &quot;#696969&quot;)
+my_reds &lt;- c(&quot;#ff6666&quot;)
+my_white &lt;- c(&quot;#E8E8E8&quot;)
+my_black &lt;- c(&quot;#000000&quot;)</code></pre>
+</div>
+<div id="import-dataset-from-ösym-link" class="section level3">
+<h3>Import dataset from <a href="https://dokuman.osym.gov.tr/pdfdokuman/2026/TUSDONEM-1/YERLESTIRME/SB/minmax_ts1d21052026.pdf">ÖSYM link</a></h3>
+<pre class="r"><code># 
+# kadro_tus &lt;- pdftools::pdf_text(pdf = here::here(&quot;datasets&quot;, &quot;minmax17112023.pdf&quot;)) %&gt;%
+#   as_tibble()
+
+kadro_tus &lt;- pdftools::pdf_text(pdf = here::here(&quot;datasets&quot;, &quot;minmax_ts1d21052026.pdf&quot;)) %&gt;%
+  as_tibble()</code></pre>
+</div>
+<div id="clean-dataset" class="section level3">
+<h3>Clean dataset</h3>
+<pre class="r"><code>## Kontenjan tablosu (KKTC kadrolarını görmek için)
+# 
+kontenjan_tus &lt;- pdftools::pdf_text(pdf = here::here(&quot;datasets&quot;, &quot;kont_tablo07052026.pdf&quot;)) %&gt;%
+  as_tibble()
+
+pattern &lt;- &quot;^(.*(?:Hastanesi|Fakültesi|Komutanlığı))\\s*(.+)$&quot;
+
+
+kıbrıs_kadroları &lt;- kontenjan_tus %&gt;%
+  separate_rows(value, sep = &quot;\n&quot;) %&gt;%
+  mutate(value = str_squish(value)) %&gt;%
+  filter(value != &quot;&quot;) %&gt;%
+  filter(str_detect(value, c(&quot;Burhan Nalbantoğlu|Sağlık Bakanlığı|Üniversite&quot;))) |&gt; 
+  # mutate(value = str_remove_all(value, &quot; dipnot \\d&quot;)) %&gt;%
+  # filter(!str_detect(value, &quot;Kontenjan|2026-TUS&quot;)) %&gt;%
+  extract(value, into = c(&quot;kurum&quot;, &quot;b&quot;), pattern) |&gt; 
+  mutate(kurum = str_replace(kurum, regex(&quot;(\\bHastanesi)\\b.*$&quot;, ignore_case = TRUE), &quot;\\1&quot;),
+         b = str_trim(str_replace_all(b, regex(&quot;\\bdipnot\\s*\\d+\\b&quot;, ignore_case = TRUE), &quot;&quot;))) |&gt; 
+  filter(str_detect(kurum, &quot;KKTC&quot;)) |&gt; 
+  slice(1:(n() - 2)) |&gt; 
+  mutate(kurum = str_replace(kurum, &quot;^.*KKTC\\s*&quot;, &quot;&quot;),
+         kurum = str_replace(kurum, &quot;^.*(?=T\\.C\\.)&quot;, &quot;&quot;),
+         b = str_replace(b, &quot;\\s+\\d+$&quot;, &quot;&quot;))
+  
+
+## FAILED</code></pre>
+<pre class="r"><code>kadro_tus_init &lt;- kadro_tus %&gt;%
+  separate_rows(value, sep = &quot;\n&quot;) %&gt;%
+  mutate(value = str_squish(value)) %&gt;%
+  filter(value != &quot;&quot;) %&gt;%
+  mutate(value = str_remove_all(value, &quot; dipnot \\d&quot;)) %&gt;%
+  filter(!str_detect(value, &quot;Kontenjan|2026-TUS&quot;)) %&gt;%
+  extract(value, into = c(&quot;kurum&quot;, &quot;b&quot;), &quot;(.*)/(.*)&quot;) %&gt;%
+  extract(b, into = c(&quot;brans&quot;, &quot;tur&quot;, &quot;d&quot;), &quot;(.*)(Yabancı Uyruklu|Genel)(.*)&quot;) %&gt;%
+  mutate(
+    d = str_trim(d),
+    brans = str_trim(brans)
+  ) %&gt;%
+  separate(d, into = c(&quot;kontenjan&quot;, &quot;yerlesen&quot;, &quot;bos&quot;, &quot;min&quot;, &quot;max&quot;), sep = &quot; &quot;) %&gt;%
+  separate(kurum, into = c(&quot;number&quot;, &quot;kurum&quot;), sep = &quot;^\\d+\\s&quot;) %&gt;%
+  select(-number) %&gt;%
+  filter(tur == &quot;Genel&quot;) |&gt; 
+  mutate(
+    kurum = str_replace_all(kurum, &quot;Sağlık Bilimleri Üniversitesi&quot;, &quot;SBÜ&quot;),
+    kurum = str_replace_all(kurum, &quot;Eğitim ve Araştırma Hastanesi&quot;, &quot;EAH&quot;),
+    kurum = str_replace_all(kurum, &quot;Tıp Fakültesi&quot;, &quot;Tıp F.&quot;),
+    kurum = str_remove_all(kurum, &quot; \\(ANKARA\\)&quot;),
+    yerlesen = str_remove_all(yerlesen, &quot;\\*&quot;)
+  ) %&gt;%
+  mutate(across(min:max, ~ if_else(. == &quot;--&quot;, NA_character_, .))) %&gt;%
+  mutate(across(min:max, ~ str_replace_all(., &quot;,&quot;, &quot;.&quot;))) %&gt;%
+  mutate(across(kontenjan:max, ~ as.numeric(.))) %&gt;%
+  mutate(across(min:max, ~ round(., 2))) |&gt; 
+  mutate(nrow = row_number())
+
+
+
+
+# clean_tus_2026 |&gt; 
+#   count(kurum, brans) |&gt; 
+#   filter(n &gt; 1)
+# 
+# kıbrıs_kurumlar_to_delete &lt;- kıbrıs_kadroları |&gt; 
+#   filter(!str_detect(kurum, &quot;Burhan Nalbantoğlu&quot;)) 
+
+BN_kadro &lt;- kadro_tus_init |&gt; ## Kıbrıs Burhan Nalbantoğlu kadroları
+  filter(str_detect(kurum, &quot;Burhan Nalbantoğlu&quot;)) |&gt; 
+  pull(nrow)
+
+rows_to_delete &lt;- kadro_tus_init |&gt; ## Kıbrıs kadroları
+  group_by(kurum, brans) |&gt; 
+  mutate(n = n()) |&gt; 
+  filter(n == 2) |&gt; 
+  slice(2) |&gt; 
+  pull(nrow)
+
+clean_tus_2026 &lt;- kadro_tus_init %&gt;%
+  filter(!nrow %in% rows_to_delete) |&gt; 
+  filter(!nrow %in% BN_kadro) |&gt; 
+  filter(!str_detect(kurum, &quot;Jandarma Genel Komutanlığı&quot;)) |&gt; 
+  mutate(
+    min = if_else(is.na(min), 0, min),
+    doluluk = 100 * round(yerlesen / kontenjan, 2),
+    kurum_title = if_else(!str_detect(kurum, &quot;SBÜ|EAH&quot;), str_to_title(kurum), kurum),
+    equal_kucuk_puan = if_else(min != max, min, NA_real_),
+    kurum_title = str_remove_all(kurum_title, &quot;Tayfur Ata Sökmen &quot;),
+    kurum_title = str_remove_all(kurum_title, &quot;Prof. Dr. &quot;)
+  ) </code></pre>
+<pre class="r"><code>## to TEST
+clean_branch_2026 &lt;- clean_tus_2026 %&gt;%
+    filter(
+      brans == &quot;PLASTİK, REKONSTRÜKTİF VE ESTETİK CERRAHİ&quot;
+    ) %&gt;%
+    group_by(kurum) %&gt;% 
+    arrange(desc(kontenjan)) %&gt;%
+    slice(1) %&gt;%
+    ungroup()</code></pre>
+</div>
+<div id="define-a-function-to-plot-for-a-specific-branch" class="section level3">
+<h3>Define a function to plot for a specific BRANCH</h3>
+<pre class="r"><code>func_tus &lt;- function(my_branch) {
+  clean_branch_2026 &lt;- clean_tus_2026 %&gt;%
+    # filter(brans != &quot;ASKERİ SAĞLIK HİZMETLERİ&quot;) %&gt;% # There is no position
+    # filter(brans != &quot;HAVA VE UZAY HEKİMLİĞİ&quot;) %&gt;% # There is no position
+    filter(
+      # tur == &quot;Genel&quot;,   # There are some errors in yabancı uyruklu-genel data in the dataset
+      brans == {{ my_branch }}
+    ) %&gt;%
+    group_by(kurum) %&gt;% # because of the errors, I chose only higher number of position as &quot;GENEL&quot; and ignored the other
+    arrange(desc(kontenjan)) %&gt;%
+    slice(1) %&gt;%
+    ungroup()
+
+  minmax_branch &lt;- clean_branch_2026 %&gt;%
+    filter(min != 0) %&gt;%
+    summarise(
+      min = min(min, na.rm = TRUE),
+      max = max(max, na.rm = TRUE)
+    )
+
+  doluluk_branch &lt;- clean_branch_2026 %&gt;%
+    summarise(
+      sum_kontenjan = sum(kontenjan, na.rm = TRUE),
+      sum_yerlesen = sum(yerlesen, na.rm = TRUE)
+    ) %&gt;%
+    mutate(doluluk = paste0(&quot;%&quot;, round(100 * sum_yerlesen / sum_kontenjan, 1)))
+
+  lowest &lt;- clean_branch_2026 %&gt;%
+    filter(min != 0) %&gt;%
+    arrange(min) %&gt;%
+    slice_head() %&gt;%
+    pull(kurum_title)
+
+  highest &lt;- clean_branch_2026 %&gt;%
+    filter(min != 0) %&gt;%
+    arrange(desc(max)) %&gt;%
+    slice_head() %&gt;%
+    pull(kurum_title)
+
+  my_subtitle &lt;- glue::glue(&quot;Doluluk: {doluluk_branch$doluluk} ({doluluk_branch$sum_yerlesen}/{doluluk_branch$sum_kontenjan})&lt;br&gt;&lt;br&gt;
+                          En yüksek: **{highest}** ({minmax_branch$max})&lt;br&gt;&lt;br&gt;
+                          En düşük: {lowest} ({minmax_branch$min})&quot;)
+
+
+  
+
+  branch_plot &lt;- clean_branch_2026 %&gt;%
+    mutate(
+      color = case_when(
+        doluluk &gt;= 100 ~ my_greens[2],
+        doluluk == 0 ~ my_reds[1],
+        TRUE ~ my_grays[2]
+      ),
+      name = glue::glue(&quot;&lt;i style=&#39;color:{color}&#39;&gt;{kurum_title}&lt;/i&gt; ({yerlesen}\\/{kontenjan})&quot;),
+      name = fct_reorder(name, min)
+    ) %&gt;%
+    ggplot(aes(x = min, y = name, fill = color)) +
+    geom_segment(aes(x = min, xend = max, y = name, yend = name), color = my_grays[3]) +
+    geom_point(aes(x = min, y = name), color = ifelse(clean_branch_2026$doluluk &gt;= 100, my_greens[1], my_grays[1]), size = 2.5) +
+    geom_point(aes(x = max, y = name), color = ifelse(clean_branch_2026$doluluk &gt;= 100, my_greens[2], my_grays[2]), size = 3.5) +
+    theme_light() +
+    scale_x_continuous(limits = c(minmax_branch$min - 2, minmax_branch$max + 2), breaks = seq(45, 80, 5)) +
+    geom_text(aes(x = max, y = name, label = max),
+      hjust = -.5, size = 3,
+      color = ifelse(clean_branch_2026$doluluk &gt;= 100, my_greens[2], my_grays[2])
+    ) +
+    geom_text(aes(x = equal_kucuk_puan, y = name, label = equal_kucuk_puan), hjust = 1.5, size = 2.5, color = ifelse(clean_branch_2026$doluluk &gt;= 100, my_greens[1], my_grays[2]), check_overlap = TRUE) +
+    labs(
+      title = glue:::glue(&quot;TUS 2026/I, &lt;span style=&#39;color: #95568F;&#39;&gt;{my_branch}&lt;/span&gt;&quot;),
+      subtitle = my_subtitle,
+      x = &quot;Puan&quot;,
+      y = &quot;&quot;,
+      caption = &quot;&lt;i style=&#39;color:#009900&#39;&gt;Yeşil&lt;/i&gt; : Kadrolar tam dolu&lt;br&gt;&lt;i style=&#39;color:#ff6666&#39;&gt;Kırmızı&lt;/i&gt;: Kadrolar tam boş&lt;br&gt;kaynak: ÖSYM&lt;br&gt;by @AliGunerMD&quot;
+    ) +
+    theme(
+      panel.grid = element_line(color = my_white[1]),
+      panel.grid.minor.x = element_blank(),
+      panel.border = element_blank(),
+      axis.text.y = element_markdown(),
+      legend.position = &quot;none&quot;,
+      plot.caption = element_markdown(),
+      plot.title.position = &quot;plot&quot;,
+      plot.title = element_markdown(hjust = .5, size = 14, face = &quot;bold&quot;),
+      plot.subtitle = element_markdown(hjust = .5)
+    )
+
+  return(branch_plot)
+  
+}</code></pre>
+</div>
+<div id="use-defined-function-for-the-branch_names-vector" class="section level3">
+<h3>use defined function for the BRANCH_NAMES vector</h3>
+<pre class="r"><code># branch_names &lt;- unique(clean_tus_2026$brans)
+
+branch_names &lt;- clean_tus_2026 %&gt;%
+  # filter(brans != &quot;ASKERİ SAĞLIK HİZMETLERİ&quot;) %&gt;%
+  # filter(brans != &quot;HAVA VE UZAY HEKİMLİĞİ&quot;) %&gt;%
+  distinct(brans) %&gt;%
+  pull(brans)
+
+save_ggplot_for_branch &lt;- function(branch_name) {
+  branch_plot &lt;- func_tus(my_branch = branch_name)
+
+output_dir &lt;- &quot;Outputs_2026_1&quot;
+
+# Klasör yoksa oluşturma kontrolü
+if (!dir.exists(output_dir)) {
+  dir.create(output_dir, recursive = TRUE)
+}
+
+# Grafik kaydetme işlemi
+ggsave(branch_plot,
+  file = file.path(output_dir, paste0(branch_name, &quot;.jpg&quot;)),
+  dpi = 300,
+  width = 9,
+  height = 14
+)
+}
+
+purrr::walk(branch_names, save_ggplot_for_branch)</code></pre>
+<!-- DO NOT FORGET TO KNIT!!!! -->
+<pre class="r"><code>#### To prepare overall BRANCH based image
+
+overall &lt;- clean_tus_2026 |&gt; 
+  # filter(tur == &quot;Genel&quot;) |&gt;
+  # filter(kurum != &quot;Dr. Burhan Nalbantoğlu Devlet Hastanesi&quot;) |&gt; 
+  filter(!is.na(brans)) |&gt;
+  mutate(min = if_else(min == 0, NA_integer_, min)) |&gt; 
+    group_by(kurum, brans) %&gt;% # because of the errors, I chose only higher number of position as &quot;GENEL&quot; and ignored the other
+    arrange(desc(kontenjan)) %&gt;%
+    slice(1) %&gt;%
+    ungroup() |&gt; 
+  summarise(yerl_all = sum(yerlesen, na.rm = TRUE),
+            kont_all = sum(kontenjan, na.rm = TRUE),
+            min_all = min(min, na.rm = TRUE),
+            max_all = max(max, na.rm = TRUE),
+            .by = brans) |&gt; 
+  mutate(max_all = if_else(yerl_all == 0, 0, max_all),
+         min_all = if_else(yerl_all == 0, 0, min_all),
+         doluluk = round(yerl_all * 100 / kont_all, 1)) |&gt; 
+  mutate(label = paste0(brans, &quot; (&quot;, yerl_all, &quot;/&quot;,  kont_all, &quot; - %&quot;, doluluk ,&quot;)&quot;))
+
+
+minmax_branch_overall &lt;- overall %&gt;%
+    filter(min_all != 0) %&gt;%
+    summarise(
+      min = min(min_all, na.rm = TRUE),
+      max = max(max_all, na.rm = TRUE)
+    )
+  
+empty_branches &lt;- overall |&gt; 
+  filter(yerl_all == 0) |&gt; 
+  pull(brans)
+
+
+branch_plot_overall &lt;- overall |&gt; 
+  mutate(
+    # brans_corr = str_to_title(brans),
+    color = case_when(
+        doluluk &gt;= 100 ~ my_greens[1],
+        doluluk == 0 ~ my_reds[1],
+        doluluk &gt;= 90 &amp; doluluk &lt; 100 ~ RforMD:::ag_colors_scale(&quot;blue&quot;, 12)[12],
+        doluluk &gt;= 70 &amp; doluluk &lt; 90 ~ RforMD:::ag_colors_scale(&quot;blue&quot;, 12)[8],
+        doluluk &gt;= 60 &amp; doluluk &lt; 70 ~ RforMD:::ag_colors_scale(&quot;blue&quot;, 12)[5],
+        doluluk &gt; 0 &amp; doluluk &lt; 60 ~ &quot;orange&quot;,
+        TRUE ~ &quot;black&quot;
+      ),
+    label = glue::glue(&quot;&lt;i style=&#39;color:{color}&#39;&gt;{label}&lt;/i&gt;&quot;),
+      label = fct_reorder(label, min_all)) |&gt; 
+   ggplot(aes(x = min_all, y = label, color = color)) +
+    geom_segment(aes(x = min_all, xend = max_all, y = label, yend = label), color = my_grays[3]) +
+    geom_point(aes(x = min_all, y = label), size = 2.5, color =  my_grays[2], ) +
+    geom_point(aes(x = max_all, y = label), size = 3.5, color =  my_greens[2], ) +
+    theme_light() +
+scale_x_continuous(limits = c(minmax_branch_overall$min - 3, minmax_branch_overall$max + 2), breaks = seq(45, 85, 5)) +
+    geom_text(aes(x = max_all, y = label, label = max_all),
+      hjust = -.5, size = 3,
+       color = my_greens[2]
+      # color = ifelse(overall$doluluk == 100, my_greens[2], my_grays[2])
+    )  + 
+    geom_text(aes(x = min_all, y = label, label = min_all), hjust = 1.5, size = 3,
+              color =  my_grays[3], 
+              check_overlap = TRUE) +
+  
+ labs(
+      title = &quot;TUS 2026/I.Dönem Branşların Min-Max puanları ve Doluluk oranları&lt;br&gt;&quot;,
+      subtitle = &quot;&quot;,
+      x = &quot;\nPuan&quot;,
+      y = &quot;&quot;,
+      caption = &quot;Minimum puana göre sıralanmıştır.&lt;br&gt;Dr. Burhan Nalbantoğlu Devlet Hastanesi ve Kıbrıs vatandaşı kadroları çıkarılmıştır.&lt;br&gt;Plastik ve Göz için birer kadroya, aynı puanlı iki aday yerleşmiştir.&lt;br&gt;kaynak: ÖSYM&lt;br&gt;by @AliGunerMD&quot;
+    ) +
+  theme(
+      panel.grid = element_line(color = my_white[1]),
+      panel.grid.minor.x = element_blank(),
+      panel.border = element_blank(),
+      axis.text.y = element_markdown(),
+      legend.position = &quot;none&quot;,
+      plot.caption = element_markdown(),
+      plot.title.position = &quot;plot&quot;,
+      plot.title = element_markdown(hjust = .5, size = 14, face = &quot;bold&quot;),
+      plot.subtitle = element_markdown(hjust = .5)
+    ) 
+
+
+
+ggsave(branch_plot_overall,
+    file = file.path(&quot;branch_plot_overall.jpg&quot;),
+    dpi = 300,
+    width = 9,
+    height = 12
+  )</code></pre>
+</div>
+</div>
